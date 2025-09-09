@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
+
+const mont = Montserrat({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JSONLD from "@/components/JSONLD";
@@ -63,14 +64,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     ]
   };
 
-  return (
-    <html lang="fr" className={font.className}>
-      <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <JSONLD data={org} />
-      </body>
-    </html>
-  );
+return (
+  <html lang="fr" className={`${mont.className} ${inter.variable}`}>
+    <body>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+      <JSONLD data={org} />
+    </body>
+  </html>
+);
 }
