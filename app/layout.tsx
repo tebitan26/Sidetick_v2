@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     "anti-fraude billetterie",
     "QR dynamique",
     "marketplace billets",
-    "événements live"
+    "événements live",
   ],
-  metadataBase: new URL("https://sidetick.app"),
-  openGraph: { images: ["/og-default.svg"] },
+  metadataBase: new URL("https://sidetick.app"), // remplace par ton domaine une fois branché
+  openGraph: {
     title: "Sidetick – Billetterie sécurisée nouvelle génération",
     description:
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
@@ -33,35 +33,35 @@ export const metadata: Metadata = {
     siteName: "Sidetick",
     images: [
       {
-        url: "/og-default.jpg", // TODO: remplace par ton image 1200x630
+        url: "/og/og-default.jpg", // ← mets ce fichier dans public/og/og-default.jpg
         width: 1200,
         height: 630,
-        alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude"
-      }
-    ]
+        alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude",
+      },
+    ],
   },
-  twitter: { images: ["/og-default.svg"] },
+  twitter: {
     card: "summary_large_image",
     title: "Sidetick – Billetterie sécurisée nouvelle génération",
     description:
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
-    images: ["/og-default.jpg"] // TODO: remplace par ton image 1200x630
+    images: ["/og/og-default.jpg"], // même image = ok
   },
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const org = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Sidetick",
-    "url": "https://sidetick.app",
-    "logo": "https://sidetick.app/logo.png",
-    "sameAs": [
+    name: "Sidetick",
+    url: "https://sidetick.app",
+    logo: "https://sidetick.app/logo.png",
+    sameAs: [
       "https://www.instagram.com/",
       "https://twitter.com/",
-      "https://www.linkedin.com/"
-    ]
+      "https://www.linkedin.com/",
+    ],
   };
 
   return (
@@ -71,6 +71,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <JSONLD data={org} />
+        {/* Plausible (optionnel si pas encore ajouté) */}
+        {/* <script defer data-domain="ton-domaine.vercel.app" src="https://plausible.io/js/script.js"></script> */}
       </body>
     </html>
   );
