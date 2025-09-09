@@ -4,6 +4,8 @@ import WaitlistForm from "@/components/WaitlistForm";
 import UltraFan from "@/components/UltraFan";
 import WaitlistCount from "@/components/WaitlistCount";
 import FAQ from "@/components/FAQ";
+import SocialProof from "@/components/SocialProof";
+
 
 export default function Page() {
   return (
@@ -88,9 +90,10 @@ export default function Page() {
             traçables, avec une revente officielle qui redistribue la valeur de
             façon équitable.
           </p>
-          <div className="mt-8">
-            <FAQ/> 
-          </div>
+            <SocialProof />
+
+            <FAQ /> 
+          
           <div className="mt-8">
             <WaitlistForm />
           </div>
