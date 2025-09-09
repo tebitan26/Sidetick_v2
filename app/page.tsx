@@ -5,7 +5,7 @@ import WaitlistCount from "@/components/WaitlistCount";
 
 export default function Page(){
   return(<div>
-   <section className="section hero-gradient text-center relative overflow-hidden">
+   <section className="relative overflow-hidden text-center bg-gradient-to-b from-black via-sidetick-orange/20 to-black py-24">
   {/* Background image */}
   <div
     className="absolute inset-0 -z-10 opacity-40"
@@ -18,17 +18,26 @@ export default function Page(){
   />
 
   <div className="container relative">
-    <h1 className="text-5xl font-bold">
-      You bring the vibe, we bring the ticket!
+    <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+      You bring the vibe,<br /> we bring the ticket!
     </h1>
-        <p className="mt-4 text-white/80 max-w-3xl mx-auto">
-          Billetterie en ligne sécurisée et éthique pour concerts, festivals et spectacles.
-          Achetez et revendez vos billets en toute sécurité grâce aux tickets blockchain.
-        </p>
-        <div className="mt-6 flex justify-center"><a href="#waitlist" className="btn">Rejoindre la liste d’attente</a></div>
-        <div className="mt-3"><WaitlistCount/></div>
-      </div>
-    </section>
+    <p className="mt-6 text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+      Billetterie en ligne sécurisée & éthique pour concerts, festivals et spectacles.  
+      Rejoignez la révolution anti-fraude grâce aux tickets blockchain.
+    </p>
+    <div className="mt-8 flex justify-center">
+      <a
+        href="#waitlist"
+        className="btn px-8 py-4 text-lg font-semibold shadow-lg hover:scale-105 transition"
+      >
+        🚀 Rejoindre la liste d’attente
+      </a>
+    </div>
+    <div className="mt-5">
+      <WaitlistCount />
+    </div>
+  </div>
+</section>
 
     <section className="section">
       <div className="container grid md:grid-cols-4 gap-4">
