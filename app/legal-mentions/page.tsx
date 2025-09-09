@@ -1,0 +1,1 @@
+export default function Page(){return (<div className='section container'><h1>Mentions légales</h1><p className='mt-2'>SIREN 989 002 266 — Sidetick SAS. Adresse : 9 Rue Albert Schweitzer, 69600 Oullins-Pierre-Bénite.</p></div>)}

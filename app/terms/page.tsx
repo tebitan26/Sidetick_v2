@@ -1,0 +1,1 @@
+export default function Page(){return (<div className='section container'><h1>Conditions d’utilisation</h1><p className='mt-2'>Utilisez Sidetick de manière responsable. Pas de revente en dehors de la plateforme officielle.</p></div>)}

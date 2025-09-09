@@ -1,0 +1,1 @@
+export default function Page(){return (<div className='section container'><h1>Politique de confidentialité</h1><p className='mt-2'>Nous collectons uniquement votre email pour la liste d’attente. Désinscription en 1 clic.</p></div>)}
