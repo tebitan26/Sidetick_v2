@@ -29,7 +29,9 @@ export default function Page() {
             Zéro fraude, revente officielle, redistribution équitable grâce à la blockchain.
           </p>
           <div className="mt-8 flex justify-center">
-            <a href="#waitlist" className="btn text-lg px-8 py-4">
+            <a href="#waitlist"
+                onClick={() => (window as any).plausible?.("cta_click_hero")}
+  className="btn text-lg px-8 py-4"
               🎟 Rejoindre la liste d’attente
             </a>
           </div>
