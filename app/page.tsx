@@ -5,39 +5,13 @@ import WaitlistCount from "@/components/WaitlistCount";
 
 export default function Page(){
   return(<div>
-   <section className="section hero-gradient text-center relative overflow-hidden">
-  {/* Image de fond */}
-  <div
-    className="absolute inset-0 -z-10 opacity-40"
-    style={{
-      backgroundImage:
-        "url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229?q=80&w=1600')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  />
+    {/* Hero → on garde hero-gradient */}
+    <section className="section hero-gradient text-center relative overflow-hidden">
+      ...
+    </section>
 
-  <div className="container relative">
-    <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
-      Billetterie en ligne <span className="text-orange-400">sécurisée</span> &
-      <span className="text-orange-400"> éthique</span>
-    </h1>
-    <p className="mt-6 text-white/80 max-w-2xl mx-auto text-lg md:text-xl">
-      Achetez et revendez vos billets de concerts, festivals et spectacles en toute sécurité.
-      Zéro fraude, revente officielle, redistribution équitable grâce à la blockchain.
-    </p>
-    <div className="mt-8 flex justify-center">
-      <a href="#waitlist" className="btn text-lg px-8 py-4">
-        🎟 Rejoindre la liste d’attente
-      </a>
-    </div>
-    <div className="mt-4">
-      <WaitlistCount />
-    </div>
-  </div>
-</section>
-
-    <section className="section">
+    {/* Features → on met section-alt pour casser le rythme */}
+    <section className="section section-alt">
       <div className="container grid md:grid-cols-4 gap-4">
         <div className="card"><strong>Sécurité absolue</strong><p className="mt-2">Blockchain + QR dynamique = zéro fraude.</p></div>
         <div className="card"><strong>Revente officielle</strong><p className="mt-2">Revendez en toute légalité, revenus partagés avec l’artiste.</p></div>
@@ -46,9 +20,11 @@ export default function Page(){
       </div>
     </section>
 
+    {/* UltraFan → normal (fond sombre) */}
     <UltraFan/>
 
-    <section className="section">
+    {/* Pourquoi Sidetick ? → on peut aussi mettre section-alt */}
+    <section className="section section-alt">
       <div className="container">
         <h2>Pourquoi Sidetick ?</h2>
         <p className="mt-3 max-w-prose">Fraude, faux billets, spéculation : la billetterie en ligne a besoin de confiance. Sidetick garantit des tickets authentiques et traçables, avec une revente officielle qui redistribue la valeur de façon équitable.</p>
