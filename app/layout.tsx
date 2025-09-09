@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "événements live"
   ],
   metadataBase: new URL("https://sidetick.app"),
-  openGraph: {
+  openGraph: { images: ["/og-default.svg"] },
     title: "Sidetick – Billetterie sécurisée nouvelle génération",
     description:
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       }
     ]
   },
-  twitter: {
+  twitter: { images: ["/og-default.svg"] },
     card: "summary_large_image",
     title: "Sidetick – Billetterie sécurisée nouvelle génération",
     description:
