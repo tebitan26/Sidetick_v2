@@ -5,9 +5,22 @@ import WaitlistCount from "@/components/WaitlistCount";
 
 export default function Page(){
   return(<div>
-    <section className="section hero-gradient text-center">
-      <div className="container">
-        <h1>You bring the vibe, we bring the ticket!</h1>
+   <section className="section hero-gradient text-center relative overflow-hidden">
+  {/* Background image */}
+  <div
+    className="absolute inset-0 -z-10 opacity-40"
+    style={{
+      backgroundImage:
+        "url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229?q=80&w=1600')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
+
+  <div className="container relative">
+    <h1 className="text-5xl font-bold">
+      You bring the vibe, we bring the ticket!
+    </h1>
         <p className="mt-4 text-white/80 max-w-3xl mx-auto">
           Billetterie en ligne sécurisée et éthique pour concerts, festivals et spectacles.
           Achetez et revendez vos billets en toute sécurité grâce aux tickets blockchain.
