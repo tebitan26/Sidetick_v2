@@ -1,12 +1,12 @@
+import type { Metadata } from "next";
+import "./globals.css";
 import { Montserrat, Inter } from "next/font/google";
-
-const mont = Montserrat({ subsets: ["latin"] });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JSONLD from "@/components/JSONLD";
 
-const font = Montserrat({ subsets: ["latin"] });
+const mont = Montserrat({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Sidetick – Billetterie sécurisée nouvelle génération",
@@ -36,18 +36,18 @@ export const metadata: Metadata = {
         url: "/og-default.jpg", // TODO: remplace par ton image 1200x630
         width: 1200,
         height: 630,
-        alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude",
-      },
-    ],
+        alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Sidetick – Billetterie sécurisée nouvelle génération",
     description:
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
-    images: ["/og-default.jpg"], // TODO: remplace par ton image 1200x630
+    images: ["/og-default.jpg"] // TODO: remplace par ton image 1200x630
   },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -64,14 +64,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     ]
   };
 
-return (
-  <html lang="fr" className={`${mont.className} ${inter.variable}`}>
-    <body>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-      <JSONLD data={org} />
-    </body>
-  </html>
-);
+  return (
+    <html lang="fr" className={`${mont.className} ${inter.variable}`}>
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <JSONLD data={org} />
+      </body>
+    </html>
+  );
 }
