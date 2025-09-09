@@ -5,17 +5,18 @@ type Logo = { src: string; alt: string; href?: string };
 
 const supporters: Logo[] = [
   // ↳ Remplace par de vrais fichiers dans public/logos/supporters/
-  { src: "/logos/supporters/support1.png", alt: "Supporter 1", href: "#" },
-  { src: "/logos/supporters/support2.png", alt: "Supporter 2", href: "#" },
-  { src: "/logos/supporters/support3.png", alt: "Supporter 3", href: "#" },
-  { src: "/logos/supporters/support4.png", alt: "Supporter 4", href: "#" },
-  { src: "/logos/supporters/support5.png", alt: "Supporter 5", href: "#" },
+  { src: "/og/supporter1.png", alt: "Waldos Legend", href: "https://www.waldoslegend.com" },
+  { src: "/og/supporter2.png", alt: "Sato Creative", href: "https://satocreative.com" },
+  { src: "/og/supporter3.png", alt: "Allfeat", href: "https://allfeat.com" },
+  { src: "/og/supporter4.png", alt: "Smoothy Labs", href: "https://www.smoothy-labs.com" },
+  { src: "/og/supporter5.png", alt: "Web3 Society", href: "https://web3society.io" },
+  { src: "/og/supporter6.png", alt: "Business Blockchain School", href: "https://www.bbschool.fr" },
 ];
 
 const institutions: Logo[] = [
   // ↳ Remplace par de vrais fichiers dans public/logos/institutions/
-  { src: "/logos/institutions/cnm.png", alt: "CNM – Centre national de la musique", href: "https://cnm.fr" },
-  { src: "/logos/institutions/cci-lyon-st-etienne.png", alt: "CCI Lyon Saint-Étienne Roanne", href: "https://www.cci.fr" },
+  { src: "/og/Acc2.png", alt: "CNM – Centre national de la musique", href: "https://cnm.fr" },
+  { src: "/og/Acc1.png", alt: "CCI Lyon Saint-Étienne Roanne", href: "https://www.cci.fr" },
   // { src: "/logos/institutions/incubateur.png", alt: "Nom de l’incubateur", href: "#" },
 ];
 
