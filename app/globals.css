@@ -1,7 +1,7 @@
 @tailwind base;@tailwind components;@tailwind utilities;
 :root{--bg:#000a25;--accent:#ff7d00;--ink:#ffecd1;}
 html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink)}
-.container{@apply max-w-6xl mx-auto px-4}.section{@apply py-12 md:py-16}
+.container{@apply max-w-6xl mx-auto px-4}.section{@apply py-16 md:py-20}
 .btn{@apply inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold transition;background:theme('colors.sidetick.orange');color:#000}
 .btn:hover{filter:brightness(1.05);transform:translateY(-1px)}.card{@apply rounded-2xl bg-white/5 backdrop-blur-sm shadow-soft p-6}
 h1,h2,h3{@apply font-bold}h1{@apply text-4xl md:text-5xl leading-tight}h2{@apply text-2xl md:text-3xl mt-8}p{@apply leading-7}
