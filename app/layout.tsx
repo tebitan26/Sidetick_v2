@@ -26,27 +26,27 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL("https://sidetick.app"), // remplace par ton domaine une fois branché
   openGraph: {
-    title: "Sidetick – Billetterie sécurisée nouvelle génération",
-    description:
-      "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
-    url: "https://sidetick.app",
-    siteName: "Sidetick",
-    images: [
-      {
-        url: "/og/og-default.jpg", // ← mets ce fichier dans public/og/og-default.jpg
-        width: 1200,
-        height: 630,
-        alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sidetick – Billetterie sécurisée nouvelle génération",
-    description:
-      "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
-    images: ["/og/og-default.jpg"], // même image = ok
-  },
+  title: "Sidetick – Billetterie sécurisée nouvelle génération",
+  description:
+    "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
+  url: "https://sidetick.app",
+  siteName: "Sidetick",
+  images: [
+    {
+      url: "/og-default.jpg", // place ton fichier ici : public/og/og-default.jpg
+      width: 1200,
+      height: 630,
+      alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude",
+    },
+  ],
+},
+twitter: {
+  card: "summary_large_image",
+  title: "Sidetick – Billetterie sécurisée nouvelle génération",
+  description:
+    "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
+  images: ["/og-default.jpg"], // même chemin, c'est ok
+},
   robots: { index: true, follow: true },
 };
 
