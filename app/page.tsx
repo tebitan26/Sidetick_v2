@@ -7,7 +7,7 @@ import WaitlistCount from "@/components/WaitlistCount";
 export default function Page() {
   return (
     <div>
-      {/* Hero - gradient + image de fond + 1 CTA */}
+      {/* Hero - gradient + image de fond + Waitlist direct */}
       <section className="section hero-gradient text-center relative overflow-hidden">
         {/* Image de fond décorative */}
         <div
@@ -34,14 +34,12 @@ export default function Page() {
             en toute sécurité. Zéro fraude, revente officielle, redistribution
             équitable grâce à la blockchain.
           </p>
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() => (window as any).plausible?.("cta_click_hero")}
-              className="btn text-lg px-8 py-4"
-            >
-              🎟 Rejoindre la liste d’attente
-            </button>
+
+          {/* Formulaire directement dans le Hero */}
+          <div className="mt-8 max-w-md mx-auto">
+            <WaitlistForm />
           </div>
+
           <div className="mt-4">
             <WaitlistCount />
           </div>
@@ -53,9 +51,7 @@ export default function Page() {
         <div className="container grid md:grid-cols-4 gap-4">
           <div className="card">
             <strong>Sécurité absolue</strong>
-            <p className="mt-2">
-              Blockchain + QR dynamique = zéro fraude.
-            </p>
+            <p className="mt-2">Blockchain + QR dynamique = zéro fraude.</p>
           </div>
           <div className="card">
             <strong>Revente officielle</strong>
