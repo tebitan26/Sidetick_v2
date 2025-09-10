@@ -24,9 +24,25 @@ export const metadata: Metadata = {
     "marketplace billets",
     "événements live",
   ],
-  export const metadata = {
-  metadataBase: new URL('https://www.sidetick.app'),
-  alternates: { canonical: '/' }, // remplace par ton domaine une fois branché
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.sidetick.app"),
+  alternates: { canonical: "/" },
+
+  title: "Sidetick – Billetterie sécurisée nouvelle génération",
+  description:
+    "Billetterie en ligne éthique et anti-fraude : achetez et revendez vos billets de concert et festival en toute sécurité (tickets blockchain).",
+  keywords: [
+    "billetterie en ligne",
+    "billets de concert",
+    "billets de festival",
+    "revente de billets",
+    "marché secondaire",
+    "tickets blockchain",
+    "anti-fraude billetterie",
+    "QR dynamique",
+    "marketplace billets",
+    "événements live",
+  ],
   openGraph: {
   title: "Sidetick – Billetterie sécurisée nouvelle génération",
   description:
