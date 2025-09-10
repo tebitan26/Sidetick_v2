@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   siteName: "Sidetick",
   images: [
     {
-      url: "/og/og-default.jpg", // place ton fichier ici : public/og/og-default.jpg
+      url: "public/og/og-default.jpg", // place ton fichier ici : public/og/og-default.jpg
       width: 1200,
       height: 630,
       alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude",
