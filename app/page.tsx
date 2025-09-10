@@ -92,7 +92,7 @@ export default function Page() {
           </p>
             <SocialProof />
 
-            <FAQ /> 
+            <FAQHome /> 
           
           <div className="mt-8">
             <WaitlistForm />
