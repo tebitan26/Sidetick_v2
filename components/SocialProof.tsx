@@ -5,7 +5,7 @@ type Logo = { src: string; alt: string; href?: string };
 
 const supporters: Logo[] = [
   // ↳ Remplace par de vrais fichiers dans public/logos/supporters/
-  { src: "/og/supporter1.png", alt: "Waldos Legend", href: "https://www.waldoslegend.com" },
+  { src: "public/og/supporter1.png", alt: "Waldos Legend", href: "https://www.waldoslegend.com" },
   { src: "/og/supporter2.png", alt: "Sato Creative", href: "https://satocreative.com" },
   { src: "/og/supporter3.png", alt: "Allfeat", href: "https://allfeat.com" },
   { src: "/og/supporter4.png", alt: "Smoothy Labs", href: "https://www.smoothy-labs.com" },
