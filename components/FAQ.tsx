@@ -3,22 +3,32 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
+type QA = { q: string; a: string };
+
+const faqs: QA[] = [
   {
-    q: "Comment Sidetick empêche la fraude ?",
-    a: "Chaque billet est tokenisé (ancré sur une blockchain) avec un QR dynamique. Un billet ne peut pas être dupliqué ni revendu hors circuit officiel."
+    q: "Comment fonctionne la revente officielle de billets d’événement sur Sidetick ?",
+    a: "La revente se fait directement dans l’app/plateforme Sidetick, via un circuit officiel et traçable. Le billet est sécurisé (tokenisé) et son QR dynamique empêche les copies. Une part de la revente revient à l’artiste/l’organisateur, ce qui rend le modèle équitable.",
   },
   {
-    q: "Dois-je connaître la crypto ?",
-    a: "Non. Tout se fait en euros, avec un parcours classique. La techno est invisible pour l’utilisateur."
+    q: "Dois-je connaître la blockchain ou la crypto pour utiliser Sidetick ?",
+    a: "Non. Tout se passe en euros avec un parcours classique (carte bancaire). La technologie blockchain est invisible pour l’utilisateur et sert uniquement à garantir l’authenticité et la traçabilité des billets.",
   },
   {
-    q: "La revente est-elle légale ?",
-    a: "Oui. La revente est intégrée, traçable et équitable : l’artiste et l’organisateur récupèrent leur part."
+    q: "Jusqu’à quand puis-je revendre mon billet de spectacle/concert ?",
+    a: "Tu peux revendre tant que l’organisateur n’a pas fermé la période de revente (souvent jusqu’à quelques heures avant l’événement). Les conditions exactes (deadline, plafond de prix) sont indiquées sur la page de l’événement.",
   },
   {
-    q: "Qu’est-ce que le statut Ultra Fan ?",
-    a: "Un programme de fidélité gamifié : badges, accès anticipé, drops exclusifs et avantages selon ton niveau."
+    q: "Pourquoi y a-t-il des frais (ex. 10 %) lors d’une revente de billet ?",
+    a: "Ces frais servent à financer la sécurisation, la traçabilité et la redistribution équitable (artiste/organisateur). Ils permettent de lutter contre la spéculation et de garantir un marché secondaire sain.",
+  },
+  {
+    q: "Comment Sidetick empêche la fraude et les faux billets ?",
+    a: "Chaque billet est ancré sur une blockchain et associé à un QR code dynamique, régénéré et vérifié au contrôle. Les duplications, screenshots et reventes hors circuit sont invalidés.",
+  },
+  {
+    q: "Qu’est-ce que le statut Ultra Fan et quels sont les avantages ?",
+    a: "C’est un programme de fidélité gamifié : badges, accès anticipé, drops exclusifs, avantages selon ton niveau et ton historique (achats, présence, engagement). Les fans réguliers sont récompensés.",
   },
 ];
 
@@ -53,7 +63,7 @@ export default function FAQ() {
           })}
         </div>
 
-        {/* JSON-LD FAQPage */}
+        {/* JSON-LD FAQPage → à l'intérieur du composant, après le rendu */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -63,8 +73,8 @@ export default function FAQ() {
               "mainEntity": faqs.map((f) => ({
                 "@type": "Question",
                 "name": f.q,
-                "acceptedAnswer": { "@type": "Answer", "text": f.a }
-              }))
+                "acceptedAnswer": { "@type": "Answer", "text": f.a },
+              })),
             }),
           }}
         />
