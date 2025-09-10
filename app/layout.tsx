@@ -24,7 +24,9 @@ export const metadata: Metadata = {
     "marketplace billets",
     "événements live",
   ],
-  metadataBase: new URL("https://sidetick.app"), // remplace par ton domaine une fois branché
+  export const metadata = {
+  metadataBase: new URL('https://www.sidetick.app'),
+  alternates: { canonical: '/' }, // remplace par ton domaine une fois branché
   openGraph: {
   title: "Sidetick – Billetterie sécurisée nouvelle génération",
   description:
