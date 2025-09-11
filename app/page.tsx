@@ -103,20 +103,6 @@ export default function Page() {
               <WaitlistCount />
             </div>
           </div>
-
-          <div className="mt-10 text-center">
-            <p className="text-white/70">Besoin d’en savoir plus ?</p>
-            <div className="mt-4 flex items-center justify-center gap-4">
-              <Link href="/features" className="underline">
-                Fonctionnalités
-              </Link>
-              <Link href="/about" className="underline">
-                À propos
-              </Link>
-              <Link href="/blog" className="underline">
-                Blog
-              </Link>
-            </div>
           </div>
         </div>
       </section>
