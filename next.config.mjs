@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { serverActions: {} },
+  experimental: {
+    serverActions: {},
+    optimizePackageImports: ["lucide-react"] // 👈 prune le code inutilisé des icônes
+  },
   images: { domains: ["images.unsplash.com", "cdn.pixabay.com"] },
-
   async redirects() {
     return [
-      // Redirige sidetick.app → www.sidetick.app (toutes les pages)
       {
         source: "/:path*",
         has: [{ type: "host", value: "sidetick.app" }],
@@ -15,4 +16,5 @@ const nextConfig = {
     ];
   },
 };
+
 export default nextConfig;
