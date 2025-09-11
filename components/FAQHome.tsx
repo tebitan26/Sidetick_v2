@@ -2,7 +2,7 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { homeEssentials } from "@/lib/faqs";
+import { homeEssentials } from "../lib/faqs";
 
 export default function FAQHome() {
   const [open, setOpen] = useState<number | null>(0);
