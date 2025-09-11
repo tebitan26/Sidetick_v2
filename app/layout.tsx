@@ -64,9 +64,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     url: "https://www.sidetick.app",
     logo: "https://www.sidetick.app/logo.png",
     sameAs: [
-      "https://www.instagram.com/", // remplace par tes vrais comptes
-      "https://twitter.com/",
-      "https://www.linkedin.com/",
+      "https://www.instagram.com/sidetick.app/", // remplace par tes vrais comptes
+      "https://x.com/sidetick_app",
+      "https://www.linkedin.com/company/sidetick-app",
     ],
   };
 
