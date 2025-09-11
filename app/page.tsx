@@ -1,25 +1,27 @@
+// app/page.tsx
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import UltraFan from "@/components/UltraFan";
-import WaitlistCount from "@/components/WaitlistCount";
-import FAQ from "@/components/FAQ";
 import SocialProof from "@/components/SocialProof";
 import FAQHome from "@/components/FAQHome";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
+// ✅ on importe WaitlistCount en mode dynamique (no SSR)
+const WaitlistCount = dynamic(() => import("@/components/WaitlistCount"), { ssr: false });
 
 export default function Page() {
   return (
     <div>
-     <section className="section hero-gradient text-center relative overflow-hidden">
-      {/* Hero bg image en tant que LCP */}
-      <Image
-      src="/og/hero.jpg"
-      alt=""
-      priority
-      fill
-      sizes="100vw"
-      className="absolute inset-0 -z-10 object-cover"
+      {/* HERO */}
+      <section className="section hero-gradient text-center relative overflow-hidden">
+        <Image
+          src="/og/hero.jpg"
+          alt="Billetterie sécurisée Sidetick"
+          priority
+          fill
+          sizes="100vw"
+          className="absolute inset-0 -z-10 object-cover"
         />
 
         <div className="container relative">
@@ -37,18 +39,19 @@ export default function Page() {
             équitable grâce à la blockchain.
           </p>
 
-          {/* Formulaire directement dans le Hero */}
+          {/* Formulaire dans le Hero */}
           <div className="mt-8 max-w-md mx-auto">
             <WaitlistForm />
           </div>
 
+          {/* ✅ compteur waitlist dynamique */}
           <div className="mt-4">
             <WaitlistCount />
           </div>
         </div>
       </section>
 
-      {/* Features – alternance fond clair */}
+      {/* FEATURES */}
       <section className="section section-alt">
         <div className="container grid md:grid-cols-4 gap-4">
           <div className="card">
@@ -76,10 +79,10 @@ export default function Page() {
         </div>
       </section>
 
-      {/* UltraFan – fond sombre */}
+      {/* ULTRAFAN */}
       <UltraFan />
 
-      {/* Pourquoi Sidetick ? – alternance fond clair */}
+      {/* Pourquoi Sidetick ? */}
       <section className="section section-alt">
         <div className="container">
           <h2>Pourquoi Sidetick ?</h2>
@@ -89,13 +92,18 @@ export default function Page() {
             traçables, avec une revente officielle qui redistribue la valeur de
             façon équitable.
           </p>
-            <SocialProof />
 
-            <FAQHome /> 
-          
+          <SocialProof />
+          <FAQHome />
+
           <div className="mt-8">
             <WaitlistForm />
+            {/* ✅ compteur waitlist en bas aussi */}
+            <div className="mt-4">
+              <WaitlistCount />
+            </div>
           </div>
+
           <div className="mt-10 text-center">
             <p className="text-white/70">Besoin d’en savoir plus ?</p>
             <div className="mt-4 flex items-center justify-center gap-4">
