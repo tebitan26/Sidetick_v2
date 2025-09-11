@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import UltraFan from "@/components/UltraFan";
