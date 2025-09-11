@@ -52,6 +52,8 @@ export const metadata: Metadata = {
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
     images: ["/og/og-default.jpg"],
   },
+    icons: {
+    icon: "/og/Logo-White.png",
 
   robots: { index: true, follow: true },
 };
@@ -62,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Organization",
     name: "Sidetick",
     url: "https://www.sidetick.app",
-    logo: "https://www.sidetick.app/logo.png",
+    logo: "https://www.sidetick.app/Logo-White.png",
     sameAs: [
       "https://www.instagram.com/sidetick.app/", // remplace par tes vrais comptes
       "https://x.com/sidetick_app",
