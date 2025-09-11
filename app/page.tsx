@@ -15,7 +15,7 @@ export default function Page() {
      <section className="section hero-gradient text-center relative overflow-hidden">
       {/* Hero bg image en tant que LCP */}
       <Image
-      src="/images/hero.jpg"
+      src="/og/hero.jpg"
       alt=""
       priority
       fill
