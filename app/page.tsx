@@ -6,22 +6,21 @@ import WaitlistCount from "@/components/WaitlistCount";
 import FAQ from "@/components/FAQ";
 import SocialProof from "@/components/SocialProof";
 import FAQHome from "@/components/FAQHome";
+import Image from "next/image";
 
 
 export default function Page() {
   return (
     <div>
-      {/* Hero - gradient + image de fond + Waitlist direct */}
-      <section className="section hero-gradient text-center relative overflow-hidden">
-        {/* Image de fond décorative */}
-        <div
-          className="absolute inset-0 -z-10 opacity-40"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229?q=80&w=1600')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+     <section className="section hero-gradient text-center relative overflow-hidden">
+      {/* Hero bg image en tant que LCP */}
+      <Image
+      src="/images/hero.jpg"
+      alt=""
+      priority
+      fill
+      sizes="100vw"
+      className="absolute inset-0 -z-10 object-cover"
         />
 
         <div className="container relative">
