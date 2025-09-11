@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-const links=[{href:"/",label:"Accueil"},{href:"/features",label:"Fonctionnalités"},{href:"/about",label:"À propos"},{href:"/blog",label:"Blog"}];
+const links=[{href:"/",label:"Accueil"},{href:"/features",label:"Fonctionnalités"},{href:"/about",label:"À propos"},{href:"/blog",label:"Blog"},{href:"/faq",label:"FAQ"}];
 export default function Header(){
   const pathname=usePathname();
   return(<header className="sticky top-0 z-50 bg-sidetick.night/70 backdrop-blur-md border-b border-white/10">
