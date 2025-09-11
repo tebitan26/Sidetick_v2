@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { Menu, X } from "lucide-react";
 
@@ -16,30 +17,30 @@ const links = [
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // Fermer avec Échap & clic extérieur
+  // Empêche le scroll quand le tiroir est ouvert
   useEffect(() => {
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") setOpen(false); }
-    function onClick(e: MouseEvent) {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false);
-    }
-    if (open) {
-      document.addEventListener("keydown", onKey);
-      document.addEventListener("mousedown", onClick);
-    }
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onClick);
-    };
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 bg-sidetick.night/70 backdrop-blur-md border-b border-white/10">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-sidetick-night/70 backdrop-blur-md">
       <div className="container flex items-center justify-between py-4">
-        <Link href="/" className="font-extrabold text-xl tracking-wide">Sidetick</Link>
+        <Link href="/" className="flex items-center gap-3 font-extrabold text-xl tracking-wide">
+          <Image
+            src="/og/Logo-White.png"
+            alt="Sidetick"
+            width={28}
+            height={28}
+            className="h-7 w-7"
+            priority
+          />
+          <span className="hidden sm:inline">Sidetick</span>
+        </Link>
 
-        {/* NAV DESKTOP */}
+        {/* Desktop nav */}
         <nav className="hidden md:flex gap-6">
           {links.map((l) => (
             <Link
@@ -55,69 +56,74 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA desktop */}
-        <a href="#waitlist" className="btn hidden md:inline-flex">Rejoindre la liste</a>
+        <div className="hidden md:block">
+          <a href="#waitlist" className="btn">Rejoindre la liste</a>
+        </div>
 
         {/* Burger mobile */}
         <button
-          className="md:hidden inline-flex items-center justify-center rounded-lg p-2 bg-white/10 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-sidetick.orange"
-          aria-controls="mobile-menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen(true)}
+          className="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-white/90 hover:text-white hover:bg-white/10"
+          aria-label="Ouvrir le menu"
         >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <Menu className="h-6 w-6" />
         </button>
       </div>
 
-      {/* PANNEAU MOBILE */}
+      {/* Overlay + tiroir mobile */}
       {open && (
         <div
-          id="mobile-menu"
-          className="md:hidden fixed inset-0 z-40 bg-black/60"
-        >
-          <div
-            ref={panelRef}
-            className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-sidetick.night border-l border-white/10 p-6 shadow-2xl"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-extrabold text-lg">Sidetick</span>
-              <button
-                className="inline-flex items-center justify-center rounded-lg p-2 bg-white/10 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-sidetick.orange"
-                aria-label="Fermer le menu"
-                onClick={() => setOpen(false)}
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <nav className="mt-6 flex flex-col gap-4">
-              {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className={clsx(
-                    "text-white/90 hover:text-white text-base",
-                    pathname === l.href && "font-semibold"
-                  )}
-                  onClick={() => setOpen(false)}
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-
-            <a
-              href="#waitlist"
-              className="btn mt-6 w-full text-center"
-              onClick={() => setOpen(false)}
-            >
-              Rejoindre la liste
-            </a>
-          </div>
-        </div>
+          aria-hidden
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+        />
       )}
+      <aside
+        className={clsx(
+          "fixed right-0 top-0 z-[70] h-screen w-5/6 max-w-xs transform bg-sidetick-night border-l border-white/10 shadow-2xl transition-transform md:hidden",
+          open ? "translate-x-0" : "translate-x-full"
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+      >
+        <div className="flex items-center justify-between px-4 py-4 border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <Image src="/og/Logo-White.png" alt="Sidetick" width={24} height={24} />
+            <span className="font-semibold">Sidetick</span>
+          </div>
+          <button
+            onClick={() => setOpen(false)}
+            className="rounded-lg p-2 text-white/90 hover:text-white hover:bg-white/10"
+            aria-label="Fermer le menu"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col p-4">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className={clsx(
+                "rounded-lg px-3 py-3 text-base transition",
+                pathname === l.href ? "bg-white/10 text-white" : "text-white/80 hover:bg-white/10 hover:text-white"
+              )}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <a
+            href="#waitlist"
+            onClick={() => setOpen(false)}
+            className="mt-4 btn text-center"
+          >
+            Rejoindre la liste
+          </a>
+        </nav>
+      </aside>
     </header>
   );
 }
