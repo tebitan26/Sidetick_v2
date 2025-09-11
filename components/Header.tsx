@@ -41,7 +41,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2" aria-label="Sidetick – Accueil">
           {/* Utilise la variante lisible sur fond sombre */}
           <Image
-            src="/og/Logo-White.png" // mets tes fichiers dans /public/og/ (ou change le chemin)
+            src="og/logo-white.png" // mets tes fichiers dans /public/og/ (ou change le chemin)
             alt="Sidetick"
             width={128}
             height={28}
@@ -105,7 +105,7 @@ export default function Header() {
         <div className="flex h-full flex-col bg-sidetick.night shadow-xl border-l border-white/10">
           <div className="flex items-center justify-between p-4">
             <Image
-              src="/og/Logo-White.png"
+              src="og/logo-white.png"
               alt="Sidetick"
               width={112}
               height={24}
