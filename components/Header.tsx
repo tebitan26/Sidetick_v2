@@ -30,7 +30,7 @@ export default function Header() {
       <div className="container flex items-center justify-between py-4">
         <Link href="/" className="flex items-center gap-3 font-extrabold text-xl tracking-wide">
           <Image
-            src="/og/Logo-White.png"
+            src="/og/logo-white.png"
             alt="Sidetick"
             width={28}
             height={28}
@@ -89,7 +89,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-between px-4 py-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <Image src="/og/Logo-White.png" alt="Sidetick" width={24} height={24} />
+            <Image src="/og/logo-white.png" alt="Sidetick" width={24} height={24} />
             <span className="font-semibold">Sidetick</span>
           </div>
           <button
