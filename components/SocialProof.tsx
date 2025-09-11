@@ -4,20 +4,17 @@ import Image from "next/image";
 type Logo = { src: string; alt: string; href?: string };
 
 const supporters: Logo[] = [
-  // ↳ Remplace par de vrais fichiers dans public/logos/supporters/
-  { src: "public/og/supporter1.png", alt: "Waldos Legend", href: "https://www.waldoslegend.com" },
-  { src: "public/og/supporter2.png", alt: "Sato Creative", href: "https://satocreative.com" },
-  { src: "public/og/supporter3.png", alt: "Allfeat", href: "https://allfeat.com" },
-  { src: "public/og/supporter4.png", alt: "Smoothy Labs", href: "https://www.smoothy-labs.com" },
-  { src: "public/og/supporter5.png", alt: "Web3 Society", href: "https://web3society.io" },
-  { src: "public/og/supporter6.png", alt: "Business Blockchain School", href: "https://www.bbschool.fr" },
+  { src: "og/supporter1.png", alt: "Waldos Legend", href: "https://www.waldoslegend.com" },
+  { src: "og/supporter2.png", alt: "Sato Creative", href: "https://satocreative.com" },
+  { src: "og/supporter3.png", alt: "Allfeat", href: "https://allfeat.com" },
+  { src: "og/supporter4.png", alt: "Smoothy Labs", href: "https://www.smoothy-labs.com" },
+  { src: "og/supporter5.png", alt: "Web3 Society", href: "https://web3society.io" },
+  { src: "og/supporter6.png", alt: "Business Blockchain School", href: "https://www.bbschool.fr" },
 ];
 
 const institutions: Logo[] = [
-  // ↳ Remplace par de vrais fichiers dans public/logos/institutions/
-  { src: "public/og/Acc2.png", alt: "CNM – Centre national de la musique", href: "https://cnm.fr" },
-  { src: "public/og/Acc1.png", alt: "CCI Lyon Saint-Étienne Roanne", href: "https://www.cci.fr" },
-  // { src: "/logos/institutions/incubateur.png", alt: "Nom de l’incubateur", href: "#" },
+  { src: "og/acc2.png", alt: "CNM – Centre national de la musique", href: "https://cnm.fr" },
+  { src: "og/acc1.png", alt: "CCI Lyon Saint-Étienne Roanne", href: "https://www.cci.fr" },
 ];
 
 function LogoGrid({ items }: { items: Logo[] }) {
@@ -34,6 +31,8 @@ function LogoGrid({ items }: { items: Logo[] }) {
                   width={160}
                   height={60}
                   className="opacity-80 hover:opacity-100 transition"
+                  loading="lazy"
+                  priority={i === 0} // 👈 seul le premier logo est prioritaire
                 />
               </a>
             ) : (
@@ -43,6 +42,8 @@ function LogoGrid({ items }: { items: Logo[] }) {
                 width={160}
                 height={60}
                 className="opacity-80"
+                loading="lazy"
+                priority={i === 0}
               />
             )
           ) : (
