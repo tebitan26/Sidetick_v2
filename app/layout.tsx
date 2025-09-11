@@ -52,8 +52,14 @@ export const metadata: Metadata = {
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
     images: ["/og/og-default.jpg"],
   },
-    icons: {
-    icon: "/og/Logo-White.png",
+     icons: {
+    // Favicon adaptatif clair/sombre (facultatif mais cool)
+    icon: [
+      { url: "/og/logo-black.png", media: "(prefers-color-scheme: light)" },
+      { url: "/og/logo-white.png", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: "/og/logo-black.png",
+  },
 
   robots: { index: true, follow: true },
 };
@@ -64,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Organization",
     name: "Sidetick",
     url: "https://www.sidetick.app",
-    logo: "https://www.sidetick.app/Logo-White.png",
+    logo: "https://www.sidetick.app/logo-white.png",
     sameAs: [
       "https://www.instagram.com/sidetick.app/", // remplace par tes vrais comptes
       "https://x.com/sidetick_app",
