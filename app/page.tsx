@@ -5,6 +5,7 @@ import UltraFan from "@/components/UltraFan";
 import WaitlistCount from "@/components/WaitlistCount";
 import FAQ from "@/components/FAQ";
 import SocialProof from "@/components/SocialProof";
+import FAQHome from "@/components/FAQHome";
 
 
 export default function Page() {
