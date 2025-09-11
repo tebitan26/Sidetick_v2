@@ -102,9 +102,6 @@ export default function Page() {
             <div className="mt-4">
               <WaitlistCount />
             </div>
-          </div>
-          </div>
-        </div>
       </section>
     </div>
   );
