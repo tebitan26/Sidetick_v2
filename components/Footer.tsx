@@ -2,6 +2,7 @@ import Link from "next/link";
 import WaitlistCount from "./WaitlistCount";
 import { Twitter, Instagram, Linkedin } from "lucide-react";
 import dynamic from "next/dynamic";
+
 const WaitlistCount = dynamic(() => import("./WaitlistCount"), { ssr: false });
 
 export default function Footer(){
