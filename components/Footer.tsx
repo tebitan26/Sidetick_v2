@@ -32,6 +32,7 @@ export default function Footer(){
           <Link href="/legal-mentions">Mentions légales</Link>
           <Link href="/privacy">Confidentialité</Link>
           <Link href="/terms">Conditions</Link>
+          <Link href="/faq">FAQ</Link>
         </nav>
 
         <div className="justify-self-end">
