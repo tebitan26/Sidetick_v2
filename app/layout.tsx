@@ -6,8 +6,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JSONLD from "@/components/JSONLD";
 
-const mont = Montserrat({ subsets: ["latin"] });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const mont = Montserrat({ 
+  subsets: ["latin"],
+  weight: ["700","800"], // ← mets SEULEMENT ce que tu utilises
+  variable: "--font-mont",
+});
+const inter = Inter({ 
+  subsets: ["latin"],
+  weight: ["400","600"], // ← idem
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sidetick.app"),
