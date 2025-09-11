@@ -38,6 +38,11 @@ export default function Footer(){
         <div className="justify-self-end">
           <small className="muted">© {new Date().getFullYear()} Sidetick SAS</small>
         </div>
+        <div className="col-span-full text-center mt-6">
+        <p className="text-white/60 text-sm">
+        Ce site a été conçu avec ❤️ par l’équipe Sidetick, pour tous les fans qui font vibrer la scène.
+        </p>
+        </div>
       </div>
     </footer>
   );
