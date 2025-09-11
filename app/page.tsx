@@ -7,7 +7,7 @@ import FAQHome from "@/components/FAQHome";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-// ✅ on importe WaitlistCount en mode dynamique (no SSR)
+// ✅ import dynamique (pas de SSR) pour alléger le bundle initial
 const WaitlistCount = dynamic(() => import("@/components/WaitlistCount"), { ssr: false });
 
 export default function Page() {
@@ -25,18 +25,14 @@ export default function Page() {
         />
 
         <div className="container relative">
-          <small className="text-white/70 block">
-            Billetterie sécurisée & anti-fraude
-          </small>
+          <small className="text-white/70 block">Billetterie sécurisée & anti-fraude</small>
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
-            Billetterie en ligne{" "}
-            <span className="text-orange-400">sécurisée</span> &{" "}
+            Billetterie en ligne <span className="text-orange-400">sécurisée</span> &{" "}
             <span className="text-orange-400">éthique</span>
           </h1>
           <p className="mt-6 text-white/80 max-w-2xl mx-auto text-lg md:text-xl">
-            Achetez et revendez vos billets de concerts, festivals et spectacles
-            en toute sécurité. Zéro fraude, revente officielle, redistribution
-            équitable grâce à la blockchain.
+            Achetez et revendez vos billets de concerts, festivals et spectacles en toute sécurité.
+            Zéro fraude, revente officielle, redistribution équitable grâce à la blockchain.
           </p>
 
           {/* Formulaire dans le Hero */}
@@ -60,21 +56,15 @@ export default function Page() {
           </div>
           <div className="card">
             <strong>Revente officielle</strong>
-            <p className="mt-2">
-              Revendez en toute légalité, revenus partagés avec l’artiste.
-            </p>
+            <p className="mt-2">Revendez en toute légalité, revenus partagés avec l’artiste.</p>
           </div>
           <div className="card">
             <strong>Expérience fluide</strong>
-            <p className="mt-2">
-              Tout en euros ; aucune connaissance crypto nécessaire.
-            </p>
+            <p className="mt-2">Tout en euros ; aucune connaissance crypto nécessaire.</p>
           </div>
           <div className="card">
             <strong>Billetterie éthique</strong>
-            <p className="mt-2">
-              Modèle juste pour artistes, fans et organisateurs.
-            </p>
+            <p className="mt-2">Modèle juste pour artistes, fans et organisateurs.</p>
           </div>
         </div>
       </section>
@@ -87,10 +77,9 @@ export default function Page() {
         <div className="container">
           <h2>Pourquoi Sidetick ?</h2>
           <p className="mt-3 max-w-prose">
-            Fraude, faux billets, spéculation : la billetterie en ligne a besoin
-            de confiance. Sidetick garantit des tickets authentiques et
-            traçables, avec une revente officielle qui redistribue la valeur de
-            façon équitable.
+            Fraude, faux billets, spéculation : la billetterie en ligne a besoin de confiance.
+            Sidetick garantit des tickets authentiques et traçables, avec une revente officielle
+            qui redistribue la valeur de façon équitable.
           </p>
 
           <SocialProof />
@@ -102,6 +91,8 @@ export default function Page() {
             <div className="mt-4">
               <WaitlistCount />
             </div>
+          </div>
+        </div>
       </section>
     </div>
   );
