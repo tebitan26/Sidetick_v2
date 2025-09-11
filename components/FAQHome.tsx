@@ -1,42 +1,21 @@
-// components/FAQHome.tsx
 "use client";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { homeEssentials } from "../lib/faqs";
+import Link from "next/link";
+import { topFAQs } from "@/lib/faqs";
 
 export default function FAQHome() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <section className="section">
-      <div className="container">
-        <p className="text-xs tracking-widest uppercase text-white/50">FAQ</p>
-        <h2 className="mt-2">Questions essentielles</h2>
-        <div className="mt-6 grid md:grid-cols-2 gap-4">
-          {homeEssentials.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <button
-                key={i}
-                onClick={() => setOpen(isOpen ? null : i)}
-                className={`text-left card w-full transition group ${isOpen ? "ring-1 ring-white/20" : ""}`}
-                aria-expanded={isOpen}
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <strong className="leading-6">{f.q}</strong>
-                  <ChevronDown
-                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                  />
-                </div>
-                {isOpen && <p className="mt-2 text-white/80">{f.a}</p>}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 text-center">
-          <a href="/faq" className="btn">Voir toute la FAQ</a>
-        </div>
+    <section className="mt-10">
+      <h3 className="text-xl font-bold">FAQ — l’essentiel</h3>
+      <div className="mt-4 space-y-3">
+        {topFAQs.map((item, i) => (
+          <details key={i} className="card p-4">
+            <summary className="cursor-pointer font-semibold">{item.q}</summary>
+            <p className="mt-2 text-white/80">{item.a}</p>
+          </details>
+        ))}
+      </div>
+      <div className="mt-4 text-center">
+        <Link href="/faq" className="underline">Voir toutes les questions</Link>
       </div>
     </section>
   );
