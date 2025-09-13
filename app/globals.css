@@ -16,19 +16,19 @@ small.muted{@apply text-white/60}
 .section-alt{background:rgba(255,236,209,.06)}
 /* Typo corps */
 body { font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-/* === Carousel / Marquee utils === */
+/* === SocialProof marquee === */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* on va dupliquer la ligne pour boucler */
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* car on duplique la liste */
 }
 
-/* Respecte le réglage d’accessibilité */
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee { animation: none !important; }
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
 }
 
-/* Fades aux bords pour un rendu clean */
+/* Masque pour fondre les bords gauche/droite proprement */
 .marquee-mask {
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
 }
