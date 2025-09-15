@@ -32,3 +32,15 @@ body { font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Robot
   -webkit-mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
           mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
 }
+
+/* globals.css : motion system */
+@media (prefers-reduced-motion:no-preference){
+  .reveal-up{opacity:0;transform:translateY(12px);animation:reveal .6s ease-out both}
+  .reveal-fade{opacity:0;animation:fade .6s ease-out both}
+  @keyframes reveal{to{opacity:1;transform:none}}
+  @keyframes fade{to{opacity:1}}
+}
+/* boutons */
+.btn{transition:transform .2s ease, box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
