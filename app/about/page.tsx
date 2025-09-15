@@ -84,7 +84,7 @@ export default function Page() {
 
           <AboutCard
             image="/team/paul.png" // ← photo de Paul (Pehoz)
-            title="Paul Denis (Pehoz) — Artiste & Advisor"
+            title="Paul Denis (Pehoz) — Direction & Partenariat Artistique"
             subtitle="Pont entre scène & produit"
             description="Apporte la perspective artiste et l’exigence d’une expérience fan moderne."
             links={[
