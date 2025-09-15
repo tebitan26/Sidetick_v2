@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils"; // si tu n'as pas cn, remplace par simple concaténation
+import { cn } from "@/lib/cn"; // si tu n'as pas cn, remplace par simple concaténation
 
 type LinkItem = { href: string; label: string; icon?: "linkedin" | "web" };
 
