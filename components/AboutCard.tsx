@@ -31,7 +31,7 @@ export default function AboutCard({ image, title, subtitle, description, links =
           alt={title}
           fill
           sizes="(max-width:768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.08] will-change-transform"
           priority={priority}
         />
       </div>
