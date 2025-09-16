@@ -5,6 +5,7 @@ import { Montserrat, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JSONLD from "@/components/JSONLD";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 const mont = Montserrat({ 
   subsets: ["latin"],
@@ -88,6 +89,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "https://www.linkedin.com/company/sidetick-app",
     ],
   };
+
+  export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr" className={`${mont.className} ${inter.variable}`}>
+      <body>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <RevealOnScroll />
+      </body>
+    </html>
+  );
+}
 
   return (
     <html lang="fr" className={`${mont.className} ${inter.variable}`}>
