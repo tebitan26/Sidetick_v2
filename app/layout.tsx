@@ -101,7 +101,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-}
 
   return (
     <html lang="fr" className={`${mont.className} ${inter.variable}`}>
