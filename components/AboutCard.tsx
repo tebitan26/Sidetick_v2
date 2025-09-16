@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/cn";
+import { shimmerDataURL } from "@/lib/shimmer";
 
 type LinkItem = { href: string; label: string; icon?: "linkedin" | "web" };
 
@@ -54,12 +55,13 @@ export default function AboutCard({
           )}
         >
           <Image
-            src={image}
-            alt={title}
-            fill
-            priority={priority}
-            sizes="(min-width: 768px) 33vw, 90vw"
-            className="object-cover opacity-70"
+            src={l.src}
+            alt={l.alt}
+            width={160}
+            height={60}
+            placeholder="blur"
+            blurDataURL={shimmerDataURL(160, 60)}
+            className="opacity-80 hover:opacity-100 transition"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
