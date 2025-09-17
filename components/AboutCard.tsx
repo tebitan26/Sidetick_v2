@@ -2,8 +2,8 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { cn } from "@/lib/cn.ts";
-import { shimmerDataURL } from "@/lib/shimmer.ts";
+import { cn } from "@/lib/cn";
+import { shimmerDataURL } from "@/lib/shimmer";
 
 type LinkItem = { href: string; label: string; icon?: "linkedin" | "web" };
 
