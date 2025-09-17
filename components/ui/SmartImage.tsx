@@ -2,7 +2,7 @@
 import Image, { ImageProps } from "next/image";
 import { useState } from "react";
 import { Skeleton } from "./Skeleton";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 export function SmartImage({ className, ...props }: ImageProps & { className?: string }) {
   const [loaded, setLoaded] = useState(false);
