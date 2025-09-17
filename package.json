@@ -16,8 +16,8 @@
     "marked": "12.0.2",
     "clsx": "2.1.1",
     "lucide-react": "0.469.0",
-    "tailwind-merge": "2.2.1"
-    "@vercel/analytics": "11.6.0",
+    "tailwind-merge": "2.2.1",
+    "@vercel/analytics": "11.6.0"
 
   },
   "devDependencies": {
