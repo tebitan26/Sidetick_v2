@@ -7,14 +7,15 @@ import Footer from "@/components/Footer";
 import JSONLD from "@/components/JSONLD";
 import RevealOnScroll from "@/components/RevealOnScroll";
 
-const mont = Montserrat({ 
+const mont = Montserrat({
   subsets: ["latin"],
-  weight: ["700","800"], // ← mets SEULEMENT ce que tu utilises
+  weight: ["700", "800"],
   variable: "--font-mont",
 });
-const inter = Inter({ 
+
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400","600"], // ← idem
+  weight: ["400", "600"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -47,12 +48,13 @@ export const metadata: Metadata = {
     siteName: "Sidetick",
     images: [
       {
-        url: "/og/og-default.jpg", // place bien public/og/og-default.jpg
+        url: "/og/og-default.jpg",
         width: 1200,
         height: 630,
         alt: "Sidetick – billetterie en ligne sécurisée & anti-fraude",
       },
     ],
+    type: "website",
   },
 
   twitter: {
@@ -62,8 +64,8 @@ export const metadata: Metadata = {
       "Achetez et revendez vos billets en toute sécurité. You bring the vibe, we bring the ticket!",
     images: ["/og/og-default.jpg"],
   },
-     icons: {
-    // Favicon adaptatif clair/sombre (facultatif mais cool)
+
+  icons: {
     icon: [
       { url: "/og/logo-black.png", media: "(prefers-color-scheme: light)" },
       { url: "/og/logo-white.png", media: "(prefers-color-scheme: dark)" },
@@ -72,11 +74,11 @@ export const metadata: Metadata = {
   },
 
   robots: { index: true, follow: true },
-
   manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // JSON-LD Organization (rendu dans le body via le composant JSONLD)
   const org = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -84,31 +86,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     url: "https://www.sidetick.app",
     logo: "https://www.sidetick.app/logo-white.png",
     sameAs: [
-      "https://www.instagram.com/sidetick.app/", // remplace par tes vrais comptes
+      "https://www.instagram.com/sidetick.app/",
       "https://x.com/sidetick_app",
       "https://www.linkedin.com/company/sidetick-app",
     ],
   };
 
-  export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${mont.className} ${inter.variable}`}>
-      <body>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <RevealOnScroll />
-      </body>
-    </html>
-  );
-
-  return (
-    <html lang="fr" className={`${mont.className} ${inter.variable}`}>
+    <html lang="fr" className={`${mont.variable} ${inter.variable}`}>
       <body>
         <Header />
         <main id="main">{children}</main>
         <Footer />
         <JSONLD data={org} />
+        <RevealOnScroll />
       </body>
     </html>
   );
