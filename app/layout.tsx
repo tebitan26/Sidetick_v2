@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JSONLD from "@/components/JSONLD";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import { Analytics } from "@vercel/analytics/next"
 
 const mont = Montserrat({
   subsets: ["latin"],
