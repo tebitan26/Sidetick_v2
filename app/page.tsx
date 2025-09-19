@@ -91,6 +91,9 @@ export default function Page() {
 
           <div className="mt-8">
             <WaitlistForm />
+              <div className="mt-4">
+              <SocialWaitlistButtons />
+              </div>
             {/* ✅ compteur waitlist en bas aussi */}
             <div className="mt-4">
               <WaitlistCount />
