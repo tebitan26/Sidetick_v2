@@ -6,7 +6,6 @@ import SocialProof from "@/components/SocialProof";
 import FAQHome from "@/components/FAQHome";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import SocialWaitlistButtons from "@/components/auth/SocialWaitlistButtons";
 
 // ✅ import dynamique (pas de SSR) pour alléger le bundle initial
 const WaitlistCount = dynamic(() => import("@/components/WaitlistCount"), { ssr: false });
@@ -40,9 +39,7 @@ export default function Page() {
           <div className="mt-8 max-w-md mx-auto">
             <WaitlistForm />
           </div>
-          <div className="mt-6 max-w-sm">
-          <SocialWaitlistButtons />
-          </div>
+        
 
           {/* ✅ compteur waitlist dynamique */}
           <div className="mt-4">
@@ -91,9 +88,6 @@ export default function Page() {
 
           <div className="mt-8">
             <WaitlistForm />
-              <div className="mt-4">
-              <SocialWaitlistButtons />
-              </div>
             {/* ✅ compteur waitlist en bas aussi */}
             <div className="mt-4">
               <WaitlistCount />
