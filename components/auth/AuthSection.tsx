@@ -1,4 +1,4 @@
-import SocialButtons from "./SocialButtons";
+
 import EmailAuth from "./EmailAuth";
 
 export default function AuthSection() {
