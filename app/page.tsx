@@ -6,6 +6,7 @@ import UltraFan from "@/components/UltraFan";
 import SocialProof from "@/components/SocialProof";
 import FAQHome from "@/components/FAQHome";
 import Link from "next/link";
+import SolutionsScroller from "@/components/SolutionsScroller";
 
 // ✅ import dynamique (pas de SSR) pour alléger le bundle initial
 const WaitlistCount = dynamic(() => import("@/components/WaitlistCount"), { ssr: false });
@@ -107,12 +108,32 @@ export default function Page() {
             <li>• <strong>Tout-en-un, mobile</strong> — ton billet, ta revente, tes avantages.</li>
           </ul>
 
-          {/* Série d’images 16:9 – même scène, foule qui se remplit */}
-          <div className="mt-10 flex flex-col gap-8">
-            <StageImage src="/solutions/solutions_empty_stage.jpg" alt="Scène vide" />
-            <StageImage src="/solutions/solutions_half_full_stage.jpg" alt="Scène à moitié pleine" />
-            <StageImage src="/solutions/solutions_full_stage.jpg" alt="Scène pleine" />
-          </div>
+          <SolutionsScroller
+  slides={[
+    { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
+    { src: "/solutions/solutions_half_full_stage.jpg", alt: "Scène à moitié pleine" },
+    { src: "/solutions/solutions_full_stage.jpg", alt: "Scène pleine" },
+  ]}
+  steps={[
+    {
+      title: "Billets infalsifiables",
+      desc: "Chaque ticket est unique et vérifié — impossible à copier.",
+      colorClass: "from-violet-300 to-violet-500",
+    },
+    {
+      title: "Revente simple & officielle",
+      desc: "Revends sans stress et sans arnaque, depuis ton smartphone.",
+      colorClass: "from-blue-300 to-blue-500",
+    },
+    {
+      title: "Fans récompensés • Tout-en-un, mobile",
+      desc: "Plus tu vibres, plus tu gagnes — ton billet, ta revente, tes avantages.",
+      colorClass: "from-orange-300 to-orange-500",
+    },
+  ]}
+  heightVh={320} // ~3 écrans de scroll; ajuste à ton goût (260–360)
+  overlay
+/>
 
           {/* CTA secondaire */}
           <div className="mt-10 text-center reveal-up">
