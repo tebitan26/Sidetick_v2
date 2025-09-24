@@ -126,6 +126,14 @@ export default function SolutionsScroller({
                     />
                   ))}
                 </div>
+                {/* ✅ SEO invisible list (accessible aux moteurs de recherche et aux lecteurs d'écran) */}
+<ul className="sr-only">
+  {steps.map((s, i) => (
+    <li key={i}>
+      {s.title} — {s.desc}
+    </li>
+  ))}
+</ul>
               </div>
             </div>
           </div>
