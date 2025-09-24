@@ -101,13 +101,6 @@ export default function Page() {
             Notre réponse : une billetterie juste et fun
           </h2>
 
-          <ul className="mt-4 grid gap-3 text-white/85 reveal-up">
-            <li>• <strong>Billets infalsifiables</strong> — chaque ticket est unique et vérifié.</li>
-            <li>• <strong>Revente simple & officielle</strong> — revends sans stress, sans arnaque.</li>
-            <li>• <strong>Fans récompensés</strong> — plus tu vibres, plus tu gagnes.</li>
-            <li>• <strong>Tout-en-un, mobile</strong> — ton billet, ta revente, tes avantages.</li>
-          </ul>
-
           <SolutionsScroller
   slides={[
     { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
