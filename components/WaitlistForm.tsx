@@ -18,10 +18,6 @@ export default function WaitlistForm({ referrer }: Props) {
   const firstFocusAt = useRef<number | null>(null);
   const lastSubmitAt = useRef<number>(0);
   const honeypot = useRef<HTMLInputElement | null>(null);
-  const { error } = await sb.auth.signInWithOtp({
-  email: normalized,
-  options: { emailRedirectTo: `${location.origin}/waitlist/confirm` },
-});
 
   useEffect(() => {
     if (firstFocusAt.current === null && email.length > 0) {
@@ -34,28 +30,23 @@ export default function WaitlistForm({ referrer }: Props) {
     setErr(null);
     setOk(null);
 
-    // validations
+    // Validations
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErr("Email invalide.");
-      return;
+      setErr("Email invalide."); return;
     }
     if (!consent) {
-      setErr("Merci d'accepter de recevoir nos emails de lancement.");
-      return;
+      setErr("Merci d'accepter de recevoir nos emails de lancement."); return;
     }
     if (honeypot.current && honeypot.current.value) {
-      setErr("Oups, une erreur est survenue.");
-      return;
+      setErr("Oups, une erreur est survenue."); return;
     }
 
     const now = Date.now();
     if (firstFocusAt.current && now - firstFocusAt.current < 2000) {
-      setErr("Trop rapide 😉 Réessaie dans un instant.");
-      return;
+      setErr("Trop rapide 😉 Réessaie dans un instant."); return;
     }
     if (now - lastSubmitAt.current < 10000) {
-      setErr("Patiente quelques secondes avant une nouvelle tentative.");
-      return;
+      setErr("Patiente quelques secondes avant une nouvelle tentative."); return;
     }
     lastSubmitAt.current = now;
 
@@ -70,15 +61,13 @@ export default function WaitlistForm({ referrer }: Props) {
           ? new URLSearchParams(location.search).get("ref") || undefined
           : undefined);
 
-      // on encode ref + consent + traces légères dans l’URL de callback
+      // URL de callback minimale et robuste (ConfirmClient lit aussi ?ref=)
       const base = typeof location !== "undefined" ? location.origin : "";
       const url = new URL("/waitlist/confirm", base);
       if (urlRef) url.searchParams.set("ref", urlRef);
-      url.searchParams.set("consent", consent ? "1" : "0");
-      url.searchParams.set("src", "website");
-      if (typeof document !== "undefined" && document.referrer) {
-        url.searchParams.set("came_from", document.referrer);
-      }
+
+      // Optionnel: mémoriser l’email pour proposer “renvoyer le mail” sur /waitlist/confirm
+      try { localStorage.setItem("sidetick:lastEmail", normalized); } catch {}
 
       // OTP Supabase (double opt-in) → l’email parle de “confirmation”, pas de “login”
       const { error } = await sb.auth.signInWithOtp({
@@ -88,8 +77,7 @@ export default function WaitlistForm({ referrer }: Props) {
       if (error) throw error;
 
       setOk("Vérifie ta boîte mail pour confirmer ton inscription ✉️");
-      setEmail("");
-      setConsent(false);
+      setEmail(""); setConsent(false);
     } catch (e: any) {
       setErr(e?.message || "Oups, ça a coupé. Réessaie dans un instant.");
     } finally {
@@ -99,9 +87,7 @@ export default function WaitlistForm({ referrer }: Props) {
 
   return (
     <form id="waitlist" onSubmit={onSubmit} className="card mt-12">
-      <label htmlFor="email" className="block mb-2">
-        Ton email
-      </label>
+      <label htmlFor="email" className="block mb-2">Ton email</label>
       <input
         id="email"
         type="email"
@@ -112,22 +98,10 @@ export default function WaitlistForm({ referrer }: Props) {
         required
       />
       {/* Honeypot */}
-      <input
-        ref={honeypot}
-        type="text"
-        name="company"
-        className="hidden"
-        tabIndex={-1}
-        autoComplete="off"
-      />
+      <input ref={honeypot} type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
 
       <div className="mt-3 flex items-center gap-2">
-        <input
-          id="consent"
-          type="checkbox"
-          checked={consent}
-          onChange={() => setConsent((v) => !v)}
-        />
+        <input id="consent" type="checkbox" checked={consent} onChange={() => setConsent(v => !v)} />
         <label htmlFor="consent" className="text-sm">
           J’accepte de recevoir des emails sur le lancement de Sidetick.
         </label>
@@ -137,11 +111,9 @@ export default function WaitlistForm({ referrer }: Props) {
         {loading ? "Envoi..." : "Rejoindre la liste d’attente"}
       </button>
 
-      <p className="mt-3 text-sm text-white/80">
-        Nous n’envoyons pas de spam. Désinscription en 1 clic.
-      </p>
+      <p className="mt-3 text-sm text-white/80">Nous n’envoyons pas de spam. Désinscription en 1 clic.</p>
 
-      {ok && <p className="mt-3 text-green-300">{ok}</p>}
+      {ok &&  <p className="mt-3 text-green-300">{ok}</p>}
       {err && <p className="mt-3 text-red-300">{err}</p>}
     </form>
   );
