@@ -1,6 +1,5 @@
 // app/thanks/page.tsx
 import Link from "next/link";
-import { cookies } from "next/headers";
 import { supabaseServer } from "@/lib/supabase/server";
 import CopyButton from "@/components/CopyButton";
 
@@ -10,7 +9,7 @@ export const metadata = {
   alternates: { canonical: "/thanks" },
 };
 
-const SHOW_MY_REFERRALS = false; // mets true quand tu voudras afficher le compteur
+const SHOW_MY_REFERRALS = false; // active plus tard si tu veux afficher le compteur
 
 export default async function ThanksPage({
   searchParams,
@@ -18,13 +17,12 @@ export default async function ThanksPage({
   searchParams?: { me?: string };
 }) {
   const me = searchParams?.me || "";
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.sidetick.app";
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://www.sidetick.app";
   const share = me ? `${base}/?ref=${me}` : base;
 
   let referrals = 0;
   if (SHOW_MY_REFERRALS && me) {
-    const sb = supabaseServer(cookies());
+    const sb = supabaseServer();
     const { data } = await sb.rpc("get_waitlist_referrals", { code: me });
     referrals = typeof data === "number" ? data : 0;
   }
