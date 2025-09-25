@@ -1,11 +1,10 @@
 // app/page.tsx
 import Image from "next/image";
-import dynamic from "next/dynamic";
+import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import UltraFan from "@/components/UltraFan";
 import SocialProof from "@/components/SocialProof";
 import FAQHome from "@/components/FAQHome";
-import Link from "next/link";
 import SolutionsScroller from "@/components/SolutionsScroller";
 import { SHOW_WAITLIST_COUNT } from "@/lib/env";
 
@@ -42,10 +41,12 @@ export default function Page() {
             <WaitlistForm />
           </div>
 
-          {/* ✅ compteur waitlist dynamique */}
-          div className="mt-4">
-    {/* <WaitlistCount /> */} {/* laissé en commentaire pour plus tard */}
-  </div>
+          {/* compteur masqué pour l’instant (réactivable via env) */}
+          {SHOW_WAITLIST_COUNT && (
+            <div className="mt-4">
+              {/* <WaitlistCount /> */}
+            </div>
+          )}
         </div>
       </section>
 
@@ -62,25 +63,21 @@ export default function Page() {
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Carte 1 */}
             <ProblemCard
               title="Fraude & faux billets"
               subtitle="Des milliers de fans se font avoir chaque année."
               img="/problems/problems_ticket_fraud.jpg"
             />
-            {/* Carte 2 */}
             <ProblemCard
               title="Prix abusifs"
               subtitle="La revente sauvage exclut les vrais fans."
               img="/problems/problems_ticket_prices.jpg"
             />
-            {/* Carte 3 */}
             <ProblemCard
               title="Pas de revente officielle"
               subtitle="Un imprévu ? Ton billet est perdu."
               img="/problems/problems_no_resale.jpg"
             />
-            {/* Carte 4 */}
             <ProblemCard
               title="Fans invisibles"
               subtitle="Les artistes ne voient pas leurs supporters."
@@ -100,31 +97,31 @@ export default function Page() {
           </h2>
 
           <SolutionsScroller
-  slides={[
-    { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
-    { src: "/solutions/solutions_half_full_stage.jpg", alt: "Scène à moitié pleine" },
-    { src: "/solutions/solutions_full_stage.jpg", alt: "Scène pleine" },
-  ]}
-  steps={[
-    {
-      title: "Billets infalsifiables",
-      desc: "Chaque ticket est unique et vérifié — impossible à copier.",
-      colorClass: "from-violet-300 to-violet-500",
-    },
-    {
-      title: "Revente simple & officielle",
-      desc: "Revends sans stress et sans arnaque, depuis ton smartphone.",
-      colorClass: "from-blue-300 to-blue-500",
-    },
-    {
-      title: "Fans récompensés • Tout-en-un, mobile",
-      desc: "Plus tu vibres, plus tu gagnes — ton billet, ta revente, tes avantages.",
-      colorClass: "from-orange-300 to-orange-500",
-    },
-  ]}
-  heightVh={320} // ~3 écrans de scroll; ajuste à ton goût (260–360)
-  overlay
-/>
+            slides={[
+              { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
+              { src: "/solutions/solutions_half_full_stage.jpg", alt: "Scène à moitié pleine" },
+              { src: "/solutions/solutions_full_stage.jpg", alt: "Scène pleine" },
+            ]}
+            steps={[
+              {
+                title: "Billets infalsifiables",
+                desc: "Chaque ticket est unique et vérifié — impossible à copier.",
+                colorClass: "from-violet-300 to-violet-500",
+              },
+              {
+                title: "Revente simple & officielle",
+                desc: "Revends sans stress et sans arnaque, depuis ton smartphone.",
+                colorClass: "from-blue-300 to-blue-500",
+              },
+              {
+                title: "Fans récompensés • Tout-en-un, mobile",
+                desc: "Plus tu vibres, plus tu gagnes — ton billet, ta revente, tes avantages.",
+                colorClass: "from-orange-300 to-orange-500",
+              },
+            ]}
+            heightVh={320}
+            overlay
+          />
 
           {/* CTA secondaire */}
           <div className="mt-10 text-center reveal-up">
@@ -139,7 +136,7 @@ export default function Page() {
       </section>
 
       {/* =========================
-          ULTRAFAN (composant existant)
+          ULTRAFAN
         ========================= */}
       <UltraFan />
 
@@ -164,10 +161,11 @@ export default function Page() {
           {/* Formulaire + compteur en bas de page */}
           <div id="waitlist" className="mt-12 max-w-md reveal-up">
             <WaitlistForm />
-            div className="mt-4">
-    {/* <WaitlistCount /> */} {/* laissé en commentaire pour plus tard */}
-  </div>
-            </div>
+            {SHOW_WAITLIST_COUNT && (
+              <div className="mt-4">
+                {/* <WaitlistCount /> */}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -187,7 +185,7 @@ export default function Page() {
           <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
             Le futur du live commence avec toi.
           </h2>
-          <p className="mt-3 text-white/80 max-w-2xl mx-auto reveal-up">
+        <p className="mt-3 text-white/80 max-w-2xl mx-auto reveal-up">
             Rejoins une communauté qui veut une billetterie <strong>plus juste</strong> et
             <strong> plus fun</strong>.
           </p>
