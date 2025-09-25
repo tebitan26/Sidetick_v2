@@ -7,9 +7,7 @@ import SocialProof from "@/components/SocialProof";
 import FAQHome from "@/components/FAQHome";
 import Link from "next/link";
 import SolutionsScroller from "@/components/SolutionsScroller";
-
-// ✅ import dynamique (pas de SSR) pour alléger le bundle initial
-const WaitlistCount = dynamic(() => import("@/components/WaitlistCount"), { ssr: false });
+import { SHOW_WAITLIST_COUNT } from "@/lib/env";
 
 export default function Page() {
   return (
@@ -45,9 +43,9 @@ export default function Page() {
           </div>
 
           {/* ✅ compteur waitlist dynamique */}
-          <div className="mt-4 reveal-up">
-            <WaitlistCount />
-          </div>
+          div className="mt-4">
+    {/* <WaitlistCount /> */} {/* laissé en commentaire pour plus tard */}
+  </div>
         </div>
       </section>
 
@@ -166,8 +164,9 @@ export default function Page() {
           {/* Formulaire + compteur en bas de page */}
           <div id="waitlist" className="mt-12 max-w-md reveal-up">
             <WaitlistForm />
-            <div className="mt-4">
-              <WaitlistCount />
+            div className="mt-4">
+    {/* <WaitlistCount /> */} {/* laissé en commentaire pour plus tard */}
+  </div>
             </div>
           </div>
         </div>
