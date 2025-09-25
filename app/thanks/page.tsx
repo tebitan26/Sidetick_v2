@@ -1,8 +1,10 @@
 export const dynamic = "force-dynamic";
+const showReferrals = false;
 
 export const metadata = {
   title: "Merci – Sidetick",
 };
+{showReferrals && <p className="mt-2 text-sm text-white/70">Filleuls confirmés : <strong>{referrals}</strong></p>}
 
 export default function ThanksPage() {
   // On génère l’URL côté client uniquement
