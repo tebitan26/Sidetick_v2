@@ -2,7 +2,8 @@
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 
-export function createSupabaseServer() {
+// Nom historique (pratique)
+export function supabaseServer() {
   const cookieStore = cookies();
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,9 +11,11 @@ export function createSupabaseServer() {
     {
       cookies: {
         get: (name: string) => cookieStore.get(name)?.value,
-        set() {},
-        remove() {},
+        set() {},   // Next gère l'écriture côté middleware/route si besoin
+        remove() {},// on ne les utilise pas ici
       },
     }
   );
 }
+
+// Si tu veux garder l'ancien nom aussi :
