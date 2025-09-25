@@ -1,34 +1,31 @@
 // app/waitlist/confirm/page.tsx
-import { redirect } from "next/navigation";
-import { supabaseServer } from "@/lib/supabase/server";
+import type { Metadata } from "next";
+import ConfirmClient from "@/components/ConfirmClient";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Confirmation — Sidetick",
   description: "Email confirmé. Bienvenue sur la waiting list Sidetick !",
+  alternates: { canonical: "/waitlist/confirm" },
 };
 
-export default async function ConfirmPage({
+export default function ConfirmPage({
   searchParams,
 }: {
-  searchParams: { ref?: string; src?: string; came_from?: string };
+  searchParams?: { ref?: string; src?: string; came_from?: string };
 }) {
-  const sb = supabaseServer();
+  const referrer = searchParams?.ref ?? null;
 
-  // 1) Récupérer l'email via la session du magic link
-  const { data } = await sb.auth.getUser();
-  const email = data.user?.email;
-  if (!email) redirect("/?verify=failed");
+  return (
+    <div className="section">
+      <div className="container text-center">
+        <h1 className="text-2xl md:text-3xl font-bold">Confirmation en cours…</h1>
+        <p className="mt-2 text-white/70">
+          Merci ! On valide ton email et on prépare ton lien de parrainage.
+        </p>
 
-  // 2) Confirmer côté BDD, en passant éventuellement le ref reçu (si quelqu'un t'a invité)
-  const { data: code, error } = await sb.rpc("confirm_waitlist", {
-    p_email: email,
-    p_referrer: searchParams.ref ?? null,
-  });
-
-  // 3) Se déconnecter immédiatement pour ne PAS “connecter” l’utilisateur au site
-  await sb.auth.signOut();
-
-  // 4) Rediriger vers /thanks avec mon propre code (pour pouvoir partager)
-  const myCode = typeof code === "string" ? code : "";
-  redirect(`/thanks${myCode ? `?me=${encodeURIComponent(myCode)}` : ""}`);
+        {/* ⬇️ La logique d’échange du code et de confirmation est côté client */}
+        <ConfirmClient referrer={referrer} />
+      </div>
+    </div>
+  );
 }
