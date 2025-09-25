@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Confirmation — Sidetick",
   description: "Email confirmé. Bienvenue sur la waiting list Sidetick !",
   alternates: { canonical: "/waitlist/confirm" },
+  robots: { index: false },
 };
 
 export default function ConfirmPage({
@@ -22,8 +23,6 @@ export default function ConfirmPage({
         <p className="mt-2 text-white/70">
           Merci ! On valide ton email et on prépare ton lien de parrainage.
         </p>
-
-        {/* Toute la logique est côté client */}
         <ConfirmClient referrer={referrer} />
       </div>
     </div>
