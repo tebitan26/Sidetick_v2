@@ -23,7 +23,7 @@ export default function ConfirmPage({
           Merci ! On valide ton email et on prépare ton lien de parrainage.
         </p>
 
-        {/* ⬇️ La logique d’échange du code et de confirmation est côté client */}
+        {/* Toute la logique est côté client */}
         <ConfirmClient referrer={referrer} />
       </div>
     </div>
