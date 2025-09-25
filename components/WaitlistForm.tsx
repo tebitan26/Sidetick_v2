@@ -18,6 +18,10 @@ export default function WaitlistForm({ referrer }: Props) {
   const firstFocusAt = useRef<number | null>(null);
   const lastSubmitAt = useRef<number>(0);
   const honeypot = useRef<HTMLInputElement | null>(null);
+  const { error } = await sb.auth.signInWithOtp({
+  email: normalized,
+  options: { emailRedirectTo: `${location.origin}/waitlist/confirm` },
+});
 
   useEffect(() => {
     if (firstFocusAt.current === null && email.length > 0) {
