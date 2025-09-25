@@ -13,28 +13,44 @@ export default function ConfirmClient({ referrer }: { referrer?: string | null }
   useEffect(() => {
     (async () => {
       try {
-        // 1) récupérer le code PKCE ajouté par Supabase à l’URL
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get("code");
-        if (!code) throw new Error("NO_CODE");
+        const url = new URL(window.location.href);
+        const code = url.searchParams.get("code");
 
-        // 2) échanger le code contre une session (PKCE)
-        const { error: exErr } = await sb.auth.exchangeCodeForSession({ code });
+        if (!code) throw new Error("NO_CODE_IN_URL");
+
+        // --- Backward-compatible call for older/newer supabase-js versions ---
+        const authAny = sb.auth as any;
+        let exErr: any | null = null;
+
+        if (typeof authAny.exchangeCodeForSession === "function") {
+          // If the SDK expects a single string argument (old API), its function length is 1
+          if (authAny.exchangeCodeForSession.length === 1) {
+            const { error } = await authAny.exchangeCodeForSession(code);
+            exErr = error ?? null;
+          } else {
+            // New API: expects an object { code }
+            const { error } = await authAny.exchangeCodeForSession({ code });
+            exErr = error ?? null;
+          }
+        } else {
+          throw new Error("NO_EXCHANGE_FN");
+        }
+
         if (exErr) throw exErr;
 
-        // 3) récupérer l’email connecté
+        // 2) Fetch the now-authenticated user to get the email
         const { data } = await sb.auth.getUser();
         const email = data.user?.email;
         if (!email) throw new Error("NO_EMAIL");
 
-        // 4) confirmer l’inscription + récupérer/attribuer mon code de parrainage
+        // 3) Confirm / upsert the waitlist entry + get (or create) my ref code
         const { data: myCode, error: rpcErr } = await sb.rpc("confirm_waitlist", {
           p_email: email,
           p_referrer: referrer || null,
         });
         if (rpcErr) throw rpcErr;
 
-        // 5) on ne garde PAS la session (pas de “login” sur le site)
+        // 4) We don't keep a logged-in session
         await sb.auth.signOut();
 
         const codeStr = typeof myCode === "string" ? myCode : "";
@@ -42,7 +58,7 @@ export default function ConfirmClient({ referrer }: { referrer?: string | null }
         window.location.replace(dest);
       } catch (e) {
         console.error(e);
-        setErr("La vérification a échoué. Réessaie avec ton lien ou renvoie-toi un nouveau mail.");
+        setErr("La vérification a échoué.");
         router.replace("/?verify=failed");
       }
     })();
