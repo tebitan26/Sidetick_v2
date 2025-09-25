@@ -36,7 +36,7 @@ export default async function ConfirmPage({
 
       <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-3">
         <span className="text-sm text-white/80">{shareUrl}</span>
-        <CopyButton value={shareUrl} />
+        <CopyButton text={shareUrl} />
       </div>
 
       <p className="mt-3 text-white/70 text-sm">
