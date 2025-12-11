@@ -173,8 +173,9 @@ export default function ProsPage() {
 
             <p className="mt-4 text-sm text-white/70">
               Vous gardez la main sur vos données. Sidetick agit comme une couche
-              intelligente par-dessus vos événements pour vous aider à décider
-              <em> qui inviter, quand et avec quelle offre</em>.
+              intelligente par-dessus vos événements pour vous aider à décider{" "}
+              <em>qui inviter, quand et avec quelle offre</em>, dans le respect
+              du RGPD.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -229,6 +230,60 @@ export default function ProsPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================
+          CAS D'USAGE PRO
+        ========================= */}
+      <section className="border-t border-white/10 bg-black/55">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <p className="text-sm uppercase tracking-wide text-sidetick-pink/80">
+            Cas d&apos;usage
+          </p>
+          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold">
+            Comment les pros utilisent Sidetick au quotidien
+          </h2>
+          <p className="mt-3 max-w-prose text-sm md:text-base text-white/80">
+            Le Fan Graph Pro s&apos;adapte à votre réalité : festival en plein
+            air, salle de concert, tournée d&apos;artiste ou marque en quête
+            d&apos;activations ciblées.
+          </p>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {/* Festival */}
+            <UseCaseCard
+              icon="🎪"
+              title="Festival — Fidéliser sur plusieurs éditions"
+              points={[
+                "Préventes ciblées pour les Superfans identifiés.",
+                "Revente officielle pour gérer les imprévus sans perdre de revenus.",
+                "Programme UltraFan qui récompense la fidélité sur plusieurs années.",
+              ]}
+            />
+
+            {/* Salle de concert */}
+            <UseCaseCard
+              icon="🎵"
+              title="Salle — Remplir plus tôt & mieux connaître les habitués"
+              points={[
+                "Repérer les publics qui reviennent plusieurs fois par saison.",
+                "Envoyer des invitations ciblées sur les soirées plus difficiles.",
+                "Construire un noyau d'habitués qui deviennent vos ambassadeurs.",
+              ]}
+            />
+
+            {/* Marque / partenaire */}
+            <UseCaseCard
+              icon="🤝"
+              title="Marque — Activer une communauté qualifiée"
+              points={[
+                "Accéder à des segments thématiques (rap, techno, indie, etc.).",
+                "Lancer des activations avec des vrais fans plutôt qu’un simple reach social.",
+                "Mesurer l’impact de chaque opération via les données d’engagement.",
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -326,5 +381,34 @@ function TimelineRow({
       </div>
       <p className="text-xs font-medium text-white/80">{fans}</p>
     </div>
+  );
+}
+
+function UseCaseCard({
+  icon,
+  title,
+  points,
+}: {
+  icon: string;
+  title: string;
+  points: string[];
+}) {
+  return (
+    <article className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-xl">
+          <span>{icon}</span>
+        </div>
+        <h3 className="text-sm font-semibold">{title}</h3>
+      </div>
+      <ul className="mt-3 space-y-1.5 text-xs text-white/80">
+        {points.map((point) => (
+          <li key={point} className="flex gap-2">
+            <span className="mt-[3px] h-1 w-1 flex-shrink-0 rounded-full bg-white/60" />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
