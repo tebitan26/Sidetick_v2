@@ -25,14 +25,18 @@ export default function Page() {
         />
 
         <div className="container relative">
-          <small className="text-white/70 block">Billetterie sécurisée & anti-fraude</small>
+          <small className="text-white/70 block">
+            Billetterie sécurisée & anti-fraude
+          </small>
 
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight reveal-up">
-            You bring the vibe, <span className="text-orange-400">We bring the ticket !</span>
+            You bring the vibe,{" "}
+            <span className="text-orange-400">We bring the ticket !</span>
           </h1>
 
           <p className="mt-6 text-white/80 max-w-2xl mx-auto text-lg md:text-xl reveal-up">
-            La billetterie nouvelle génération : <strong>sécurisée</strong>, <strong>juste</strong> et
+            La billetterie nouvelle génération : <strong>sécurisée</strong>,{" "}
+            <strong>juste</strong> et
             <strong> faite pour les fans & les artistes</strong>.
           </p>
 
@@ -59,7 +63,8 @@ export default function Page() {
             Pourquoi la billetterie doit changer
           </h2>
           <p className="mt-3 max-w-prose text-white/80 reveal-up">
-            Fraude, prix abusifs, impossibilité de revendre, fans invisibles : on peut faire mieux.
+            Fraude, prix abusifs, impossibilité de revendre, fans invisibles :
+            on peut faire mieux.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -99,7 +104,10 @@ export default function Page() {
           <SolutionsScroller
             slides={[
               { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
-              { src: "/solutions/solutions_half_full_stage.jpg", alt: "Scène à moitié pleine" },
+              {
+                src: "/solutions/solutions_half_full_stage.jpg",
+                alt: "Scène à moitié pleine",
+              },
               { src: "/solutions/solutions_full_stage.jpg", alt: "Scène pleine" },
             ]}
             steps={[
@@ -136,6 +144,116 @@ export default function Page() {
       </section>
 
       {/* =========================
+          FAN GRAPH B2C – NOUVELLE SECTION
+        ========================= */}
+      <section className="section section-alt">
+        <div className="container grid gap-10 md:grid-cols-2 md:items-center">
+          {/* Texte Fan Graph */}
+          <div className="reveal-up">
+            <h2 className="text-3xl md:text-4xl font-extrabold">
+              Ton Fan Graph : ta carte d&apos;identité culturelle
+            </h2>
+            <p className="mt-4 text-white/80 max-w-prose">
+              Avec Sidetick, tu n&apos;es plus juste un numéro de commande. Ton
+              <strong> Fan Graph</strong> rend visible tout ce que tu vis pour
+              la culture : les concerts auxquels tu vas, les festivals que tu
+              enchaînes, les artistes que tu soutiens.
+            </p>
+
+            <ul className="mt-5 space-y-3 text-sm text-white/80">
+              <li>
+                • <strong>Badges & tags</strong> : Festival Lover, Early Bird,
+                Streamer, Collector, Ambassadeur…
+              </li>
+              <li>
+                • <strong>Niveaux d’engagement</strong> : de simple{" "}
+                <em>Découvreur</em> à <em>Superfan</em> et <em>Ultrafan</em>.
+              </li>
+              <li>
+                • <strong>Avantages concrets</strong> : préventes, réductions,
+                accès VIP, expériences spéciales.
+              </li>
+            </ul>
+
+            <p className="mt-4 text-sm text-white/70">
+              Plus tu vis ta passion, plus ton Fan Graph évolue — et plus tu
+              deviens visible aux yeux des artistes et des organisateurs.
+            </p>
+
+            <div className="mt-6">
+              <Link
+                href="#waitlist"
+                className="inline-flex items-center justify-center rounded-full bg-sidetick-orange px-6 py-3 text-sm font-semibold text-black hover:brightness-105 hover:-translate-y-0.5 transition"
+              >
+                Construire mon Fan Graph
+              </Link>
+            </div>
+          </div>
+
+          {/* Mockup Fan Graph */}
+          <div className="reveal-up">
+            <div className="relative rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur shadow-sidetick-glow">
+              <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
+                Aperçu de ton profil fan
+              </p>
+
+              <div className="mt-3 flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-white/20" />
+                <div>
+                  <p className="text-sm font-semibold">@side_fan_92</p>
+                  <p className="text-xs text-white/60">
+                    7 événements • 3 artistes suivis
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-black/40 p-3">
+                  <p className="text-xs text-white/60">Badge principal</p>
+                  <p className="mt-1 text-sm font-semibold">Festival Lover</p>
+                  <p className="mt-1 text-xs text-white/60">
+                    4 festivals en 12 mois
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-black/40 p-3">
+                  <p className="text-xs text-white/60">Tag</p>
+                  <p className="mt-1 text-sm font-semibold">Early Bird</p>
+                  <p className="mt-1 text-xs text-white/60">
+                    Achète en prévente 8 fois sur 10
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-black/40 p-3">
+                  <p className="text-xs text-white/60">Impact</p>
+                  <p className="mt-1 text-sm font-semibold">Ambassadeur</p>
+                  <p className="mt-1 text-xs text-white/60">
+                    23 billets suggérés à tes amis
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-black/40 p-3">
+                  <p className="text-xs text-white/60">Niveau</p>
+                  <p className="mt-1 text-sm font-semibold text-orange-300">
+                    Superfan
+                  </p>
+                  <p className="mt-1 text-xs text-white/60">
+                    Accès prioritaire aux préventes
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-4 text-xs text-white/65">
+                Ces informations restent sous ton contrôle mais permettent aux
+                artistes de mieux comprendre qui sont leurs vrais supporters — et
+                de te remercier en conséquence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================
           ULTRAFAN
         ========================= */}
       <UltraFan />
@@ -145,9 +263,12 @@ export default function Page() {
         ========================= */}
       <section className="section section-alt">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">Ils croient déjà en nous</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
+            Ils croient déjà en nous
+          </h2>
           <p className="mt-3 max-w-prose text-white/80 reveal-up">
-            Artistes, marques et institutions nous soutiennent pour protéger l’expérience live.
+            Artistes, marques et institutions nous soutiennent pour protéger
+            l’expérience live.
           </p>
 
           <div className="mt-8 reveal-up">
@@ -185,8 +306,9 @@ export default function Page() {
           <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
             Le futur du live commence avec toi.
           </h2>
-        <p className="mt-3 text-white/80 max-w-2xl mx-auto reveal-up">
-            Rejoins une communauté qui veut une billetterie <strong>plus juste</strong> et
+          <p className="mt-3 text-white/80 max-w-2xl mx-auto reveal-up">
+            Rejoins une communauté qui veut une billetterie{" "}
+            <strong>plus juste</strong> et
             <strong> plus fun</strong>.
           </p>
           <div className="mt-8 reveal-up">
