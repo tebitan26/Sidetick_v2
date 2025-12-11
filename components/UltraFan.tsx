@@ -1,192 +1,186 @@
-"use client";
-
-import { useState } from "react";
-import {
-  Ticket, Trophy, Stars, Gift, Share2, Music2, ShoppingBag,
-  ShieldCheck, Smartphone, Zap
-} from "lucide-react";
+// components/UltraFan.tsx
 import Link from "next/link";
 
-type TierKey = "fan" | "superfan" | "ultrafan";
-
-const TIERS: Record<TierKey, {
-  label: string;
-  gradient: string;            // bg gradient
-  ring: string;                 // ring color
-  icon: JSX.Element;
-  threshold: number;            // points needed to reach tier
-  perks: { icon: JSX.Element; label: string; }[];
-}> = {
-  fan: {
-    label: "Fan",
-    gradient: "bg-gradient-to-br from-violet-600/25 to-indigo-600/25",
-    ring: "ring-violet-400/30",
-    icon: <Music2 className="h-5 w-5" />,
-    threshold: 0,
-    perks: [
-      { icon: <ShieldCheck className="h-4 w-4" />, label: "Billets sécurisés & traçables" },
-      { icon: <Smartphone className="h-4 w-4" />, label: "Ticket mobile & QR dynamique" },
-    ],
-  },
-  superfan: {
-    label: "Superfan",
-    gradient: "bg-gradient-to-br from-blue-600/25 to-cyan-600/25",
-    ring: "ring-blue-400/30",
-    icon: <Stars className="h-5 w-5" />,
-    threshold: 300,
-    perks: [
-      { icon: <Gift className="h-4 w-4" />, label: "Accès anticipé à certaines ventes" },
-      { icon: <Ticket className="h-4 w-4" />, label: "Revente officielle simplifiée" },
-      { icon: <Share2 className="h-4 w-4" />, label: "Bonus de parrainage ponctuels" },
-    ],
-  },
-  ultrafan: {
-    label: "UltraFan",
-    gradient: "bg-gradient-to-br from-orange-600/25 to-rose-600/25",
-    ring: "ring-orange-400/30",
-    icon: <Trophy className="h-5 w-5" />,
-    threshold: 1000,
-    perks: [
-      { icon: <Zap className="h-4 w-4" />, label: "Drops/présales exclusives" },
-      { icon: <ShoppingBag className="h-4 w-4" />, label: "Merch & expériences limitées" },
-      { icon: <Stars className="h-4 w-4" />, label: "Tirages “meet & greet”/backstage" },
-    ],
-  },
+type FanRow = {
+  rank: number;
+  name: string;
+  badges: string[];
+  score: string;
 };
 
-// Missions “comment gagner des points”
-const MISSIONS: { pts: number; label: string; }[] = [
-  { pts: 50,  label: "Acheter un billet" },
-  { pts: 30,  label: "Assister à l’événement (check-in)" },
-  { pts: 20,  label: "Partager l’event (social)" },
-  { pts: 15,  label: "Inviter un ami (parrainage)" },
-  { pts: 10,  label: "Consommer du contenu (clips/actu)" },
+const TOP_FANS: FanRow[] = [
+  {
+    rank: 1,
+    name: "@side_superfan",
+    badges: ["Festival Lover", "Ambassadeur"],
+    score: "UltraFan • 9 420 pts",
+  },
+  {
+    rank: 2,
+    name: "@club_kid",
+    badges: ["Early Bird", "Streamer"],
+    score: "Superfan • 7 310 pts",
+  },
+  {
+    rank: 3,
+    name: "@underground_soul",
+    badges: ["Collector"],
+    score: "Fan • 4 980 pts",
+  },
 ];
 
 export default function UltraFan() {
-  // état d’aperçu (pas de vraie session ici – purely marketing/UX)
-  const [tier, setTier] = useState<TierKey>("superfan");
-  const current = TIERS[tier];
-
-  // progress bar de démo (montre visuellement le passage de palier)
-  const demoPoints = tier === "fan" ? 120 : tier === "superfan" ? 620 : 1200;
-  const nextThreshold = tier === "fan" ? TIERS.superfan.threshold : TIERS.ultrafan.threshold;
-  const base = tier === "fan" ? TIERS.fan.threshold : TIERS.superfan.threshold;
-  const pct = Math.min(100, Math.round(((demoPoints - base) / Math.max(1, (nextThreshold - base))) * 100));
-
   return (
     <section className="section">
-      <div className="container">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
-              UltraFan — la reconnaissance des vrais fans
-            </h2>
-            <p className="mt-2 text-white/80 max-w-prose reveal-up">
-              Gagne des points en vivant ta passion. Monte de palier et débloque des avantages
-              réels : accès anticipés, drops exclusifs, tirages et expériences uniques.
-            </p>
-          </div>
+      <div className="container grid gap-10 md:grid-cols-2 md:items-center">
+        {/* Texte côté fan */}
+        <div className="reveal-up">
+          <p className="text-sm uppercase tracking-wide text-sidetick-pink/80">
+            Fan Graph • UltraFan
+          </p>
+          <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">
+            De fan à UltraFan : ton engagement devient visible
+          </h2>
 
-          {/* Switch tiers (aperçu) */}
-          <div className="inline-flex rounded-xl border border-white/10 bg-white/5 p-1 reveal-up">
-            {(["fan", "superfan", "ultrafan"] as TierKey[]).map((k) => (
-              <button
-                key={k}
-                onClick={() => setTier(k)}
-                className={[
-                  "px-3 py-1.5 text-sm rounded-lg transition",
-                  tier === k ? "bg-white/20 text-white" : "text-white/70 hover:text-white"
-                ].join(" ")}
-                aria-pressed={tier === k}
-              >
-                {TIERS[k].label}
-              </button>
-            ))}
+          <p className="mt-4 text-white/80 max-w-prose">
+            Sur Sidetick, chaque concert, chaque festival, chaque partage
+            construit ton <strong>Fan Graph</strong>. Quand ton engagement
+            explose, tu passes au niveau <strong>UltraFan</strong> et tu
+            débloques des avantages réels, pas juste des likes.
+          </p>
+
+          <ul className="mt-5 space-y-3 text-sm text-white/80">
+            <li>
+              • <strong>Classement dynamique</strong> : vois où tu te situes
+              parmi les fans d&apos;un artiste ou d&apos;un festival.
+            </li>
+            <li>
+              • <strong>Badges & niveaux</strong> : Découvreur, Fan, Superfan,
+              UltraFan — ton statut en dit long.
+            </li>
+            <li>
+              • <strong>Avantages exclusifs</strong> : préventes privées,
+              places limitées, zones VIP, expériences backstage.
+            </li>
+          </ul>
+
+          <p className="mt-4 text-sm text-white/70">
+            L&apos;objectif ? Récompenser celles et ceux qui font vivre la
+            scène au quotidien — pas juste ceux qui ont la carte bancaire la
+            plus lourde.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="#waitlist"
+              className="inline-flex items-center justify-center rounded-full bg-sidetick-violet px-6 py-3 text-sm font-semibold text-white shadow-sidetick-glow hover:opacity-90 hover:-translate-y-0.5 transition"
+            >
+              Rejoindre les futurs UltraFans
+            </Link>
+            <p className="text-xs text-white/70 max-w-xs">
+              Inscris-toi pour être parmi les premiers à voir ton Fan Graph et
+              ton classement UltraFan.
+            </p>
           </div>
         </div>
 
-        {/* Carte tier sélectionné */}
-        <article
-          className={[
-            "mt-6 rounded-2xl border border-white/10 backdrop-blur p-5 md:p-6 reveal-up",
-            current.gradient, current.ring, "ring-1"
-          ].join(" ")}
-        >
-          <header className="flex items-center gap-2">
-            <div className="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-              {current.icon}
-            </div>
-            <h3 className="text-xl font-bold">{current.label}</h3>
-          </header>
+        {/* Leaderboard côté UI (Fan Graph concret) */}
+        <div className="reveal-up">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur shadow-sidetick-glow">
+            <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
+              Classement UltraFan – Artiste exemple
+            </p>
 
-          {/* Progress demo */}
-          <div className="mt-4">
-            <div className="flex items-center justify-between text-xs text-white/70">
-              <span>{demoPoints} pts</span>
-              <span>palier {nextThreshold} pts</span>
-            </div>
-            <div className="mt-2 h-2 w-full rounded-full bg-white/10 overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-orange-400 via-violet-400 to-blue-400"
-                style={{ width: `${pct}%` }}
-                aria-label={`Progression ${pct}%`}
-              />
-            </div>
-          </div>
+            <p className="mt-1 text-xs text-white/60">
+              Basé sur les billets, la présence aux événements et le soutien
+              continu.
+            </p>
 
-          {/* Avantages */}
-          <ul className="mt-5 grid gap-2 md:grid-cols-2">
-            {current.perks.map((p, i) => (
-              <li key={i} className="flex items-center gap-2 text-white/90">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-lg bg-white/10">
-                  {p.icon}
-                </span>
-                {p.label}
-              </li>
-            ))}
-          </ul>
-
-          {/* Missions — comment gagner des points */}
-          <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
-            <div className="flex items-center gap-2 text-sm font-semibold">
-              <Stars className="h-4 w-4" /> Gagner des points
-            </div>
-            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-              {MISSIONS.map((m, i) => (
-                <li key={i} className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
-                  <span className="text-white/85">{m.label}</span>
-                  <span className="text-white/70 text-sm">+{m.pts}</span>
-                </li>
+            <div className="mt-4 space-y-3">
+              {TOP_FANS.map((fan) => (
+                <FanRow key={fan.rank} fan={fan} />
               ))}
-            </ul>
-            <p className="mt-3 text-xs text-white/60">
-              Exemple indicatif — barème amené à évoluer selon les événements.
+            </div>
+
+            <div className="mt-5 rounded-2xl bg-black/40 px-4 py-3 text-xs text-white/70">
+              <p>
+                Les artistes et organisateurs peuvent utiliser ce classement
+                pour :
+              </p>
+              <ul className="mt-2 list-disc pl-4 space-y-1">
+                <li>inviter les UltraFans à des events privés,</li>
+                <li>tester des nouveaux formats (release party, listening session),</li>
+                <li>récompenser les ambassadeurs les plus actifs.</li>
+              </ul>
+            </div>
+
+            <p className="mt-4 text-[11px] text-white/60">
+              Les points et badges affichés ici sont un exemple. À terme, chaque
+              artiste pourra définir ses propres règles d&apos;UltraFan.
             </p>
           </div>
+        </div>
+      </div>
 
-          {/* CTA */}
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-            <div className="text-white/75 text-sm flex items-center gap-2">
-              <Ticket className="h-4 w-4" />
-              Commence dès maintenant : rejoins la waiting list.
-            </div>
-            <Link
-              href="#waitlist"
-              className="inline-flex items-center justify-center rounded-xl bg-white/15 px-4 py-2 text-sm hover:bg-white/25 transition"
-            >
-              Rejoindre la Side
-            </Link>
-          </div>
-
-          {/* SEO invisible: liste des avantages pour chaque tier */}
-          <ul className="sr-only">
-            {Object.values(TIERS).map((t) =>
-              t.perks.map((p) => <li key={`${t.label}-${p.label}`}>{t.label} — {p.label}</li>)
-            )}
-          </ul>
-        </article>
+      {/* Sous-bloc pour la passerelle B2B (sans casser ton B2C) */}
+      <div className="container mt-12 grid gap-6 md:grid-cols-3 reveal-up">
+        <UltraCard
+          title="Pour les fans"
+          desc="Tu vois enfin ton engagement reconnu. Ton Fan Graph te suit d’un événement à l’autre, quelle que soit la salle ou le festival."
+          accent="text-sidetick-orange"
+        />
+        <UltraCard
+          title="Pour les artistes"
+          desc="Ils identifient leurs vrais supporters, pas seulement les chiffres anonymes. Idéal pour remercier et activer les bonnes personnes."
+          accent="text-sidetick-violet"
+        />
+        <UltraCard
+          title="Pour les organisateurs"
+          desc="Ils accèdent à un outil simple pour segmenter, inviter et fidéliser les publics les plus engagés — sans perdre la donnée."
+          accent="text-sidetick-pink"
+        />
       </div>
     </section>
+  );
+}
+
+function FanRow({ fan }: { fan: FanRow }) {
+  return (
+    <div className="flex items-center gap-3 rounded-2xl bg-black/40 px-3 py-3">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-xs font-semibold">
+        #{fan.rank}
+      </div>
+      <div className="flex-1">
+        <p className="text-sm font-semibold">{fan.name}</p>
+        <div className="mt-1 flex flex-wrap gap-1">
+          {fan.badges.map((badge) => (
+            <span
+              key={badge}
+              className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-white/80"
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="text-right text-xs text-white/70">{fan.score}</div>
+    </div>
+  );
+}
+
+function UltraCard({
+  title,
+  desc,
+  accent,
+}: {
+  title: string;
+  desc: string;
+  accent?: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+      <h3 className={`text-sm font-semibold ${accent ?? ""}`}>{title}</h3>
+      <p className="mt-2 text-sm text-white/80">{desc}</p>
+    </div>
   );
 }
