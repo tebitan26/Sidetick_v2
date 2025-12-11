@@ -6,63 +6,76 @@ const WaitlistCount = dynamic(() => import("./WaitlistCount"), { ssr: false });
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-white/10">
-      <div className="container py-10">
-        {/* Brand + colonnes */}
-        <div className="grid gap-8 md:grid-cols-5">
-          {/* Col 1 — Brand */}
-          <div>
-            <h3 className="text-xl font-bold">Sidetick</h3>
-            <p className="text-white/70 mt-2">
-              You bring the vibe, we bring the ticket!
-            </p>
-            <div className="mt-3">
-              <WaitlistCount />
-            </div>
-            <p className="mt-6 text-white/50 text-sm">
-              © {new Date().getFullYear()} Sidetick SAS
-            </p>
-          </div>
+    <footer className="border-t border-white/10 bg-black/90 text-white">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 md:flex-row md:justify-between">
+        {/* Col 1 — Brand */}
+        <div className="max-w-xs space-y-3">
+          <h3 className="text-lg font-semibold">Sidetick</h3>
+          <p className="text-sm text-white/80">
+            You bring the vibe, we bring the ticket!
+          </p>
+          <p className="text-xs text-white/60">
+            © {new Date().getFullYear()} Sidetick SAS. Tous droits réservés.
+          </p>
+          <p className="text-xs text-white/60">
+            Déjà <span className="font-semibold"><WaitlistCount /></span> fans sur la liste
+            d&apos;attente.
+          </p>
+        </div>
 
-          {/* Col 2 — Pages */}
-          <nav className="flex flex-col gap-2">
-            <p className="text-white/60 text-sm uppercase tracking-wide">Pages</p>
+        {/* Col 2 — Pages */}
+        <div className="space-y-3 text-sm">
+          <h4 className="font-semibold">Pages</h4>
+          <div className="flex flex-col gap-1 text-white/80">
             <Link href="/">Accueil</Link>
-            <Link href="/features">Fonctionnalités</Link>
+            <Link href="/pros">Organisateurs & artistes</Link>
             <Link href="/about">À propos</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/faq">FAQ</Link>
-          </nav>
-
-          {/* Col 3 — Légal */}
-          <nav className="flex flex-col gap-2">
-            <p className="text-white/60 text-sm uppercase tracking-wide">Légal</p>
-            <Link href="/legal-mentions">Mentions légales</Link>
-            <Link href="/privacy">Confidentialité</Link>
-            <Link href="/terms">Conditions</Link>
-          </nav>
-
-          {/* Col 4 — Réseaux */}
-          <nav className="flex flex-col gap-2">
-            <p className="text-white/60 text-sm uppercase tracking-wide">Réseaux</p>
-            <a href="https://x.com/sidetick_app" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
-            <a href="https://www.instagram.com/sidetick.app/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.linkedin.com/company/sidetick-app" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </nav>
-
-          {/* Col 5 — Contact */}
-          <div className="flex flex-col gap-2">
-            <p className="text-white/60 text-sm uppercase tracking-wide">Contact</p>
-            <a href="mailto:contact@sidetick.app">contact@sidetick.app</a>
           </div>
         </div>
 
-        {/* Bas de page */}
-        <div className="mt-8 border-t border-white/10 pt-6 text-center">
-          <p className="text-white/60 text-sm">
-            Ce site a été conçu avec ❤️ par l’équipe Sidetick, pour tous les fans qui font vibrer la scène.
-          </p>
+        {/* Col 3 — Légal */}
+        <div className="space-y-3 text-sm">
+          <h4 className="font-semibold">Légal</h4>
+          <div className="flex flex-col gap-1 text-white/80">
+            <Link href="/legal">Mentions légales</Link>
+            <Link href="/privacy">Confidentialité</Link>
+            <Link href="/terms">Conditions</Link>
+          </div>
         </div>
+
+        {/* Col 4 — Réseaux */}
+        <div className="space-y-3 text-sm">
+          <h4 className="font-semibold">Réseaux</h4>
+          <div className="flex flex-col gap-1 text-white/80">
+            <Link href="https://x.com/sidetick_app" target="_blank">
+              X (Twitter)
+            </Link>
+            <Link href="https://www.instagram.com/sidetick.app/" target="_blank">
+              Instagram
+            </Link>
+            <Link
+              href="https://www.linkedin.com/company/sidetick-app"
+              target="_blank"
+            >
+              LinkedIn
+            </Link>
+          </div>
+        </div>
+
+        {/* Col 5 — Contact */}
+        <div className="space-y-3 text-sm">
+          <h4 className="font-semibold">Contact</h4>
+          <div className="flex flex-col gap-1 text-white/80">
+            <a href="mailto:contact@sidetick.app">contact@sidetick.app</a>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10 py-4 text-center text-xs text-white/60">
+        Ce site a été conçu avec ❤️ par l’équipe Sidetick, pour tous les fans qui
+        font vibrer la scène.
       </div>
     </footer>
   );
