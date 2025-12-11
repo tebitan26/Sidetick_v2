@@ -10,12 +10,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Palette Sidetick V2
+        // Palette Sidetick V2 (clés utilitaires pour les classes Tailwind)
         "sidetick-bg": "#1B003B", // bleu violet très foncé – fond principal
         "sidetick-violet": "#7A3CFF", // violet électrique – accent / primaire
         "sidetick-pink": "#FF0099", // magenta vif – accent festif
         "sidetick-red": "#FB4437", // rouge punchy – alerte / highlights
-        "sidetick-orange": "#F79D65", // on garde l’orange pour certains CTA
+        "sidetick-orange": "#F79D65", // orange exact pour CTA, fonds, etc.
+
+        // Objet imbriqué pour theme('colors.sidetick.orange') dans globals.css
+        sidetick: {
+          orange: "#F79D65",
+        },
       },
       backgroundImage: {
         "sidetick-gradient":
