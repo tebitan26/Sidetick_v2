@@ -17,15 +17,12 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="border-b border-white/10 bg-sidetick-bg/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-sidetick-bg/80 backdrop-blur">
       <div className="container flex items-center justify-between py-3">
         {/* Logo / Brand */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            {/* Si tu as un logo en image, tu pourras le remettre ici */}
-            <span className="text-base font-bold tracking-tight">
-              Sidetick
-            </span>
+            <span className="text-base font-bold tracking-tight">Sidetick</span>
           </Link>
         </div>
 
@@ -52,7 +49,7 @@ export default function Header() {
 
           {/* CTA Waitlist toujours visible */}
           <Link
-            href="#waitlist"
+            href="/start#waitlist"
             className="inline-flex items-center rounded-full bg-sidetick-orange px-4 py-1.5 text-xs font-semibold text-black hover:brightness-105 hover:-translate-y-0.5 transition"
           >
             Rejoindre la waiting list
@@ -94,7 +91,7 @@ export default function Header() {
             })}
 
             <Link
-              href="#waitlist"
+              href="/start#waitlist"
               className="mt-2 inline-flex items-center justify-center rounded-full bg-sidetick-orange px-4 py-2 text-xs font-semibold text-black hover:brightness-105 transition"
               onClick={() => setOpen(false)}
             >
