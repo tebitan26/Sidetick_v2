@@ -49,7 +49,7 @@ export default function StartPage() {
             </Link>
           </div>
 
-          <div className="mt-10 max-w-md mx-auto">
+          <div id="waitlist" className="mt-10 max-w-md mx-auto scroll-mt-24">
             <h2 className="text-sm font-semibold text-white/80">
               Rejoins la waiting list
             </h2>
