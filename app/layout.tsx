@@ -23,7 +23,6 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sidetick.app"),
-  alternates: { canonical: "/" },
 
   title: "Sidetick – Billetterie sécurisée nouvelle génération",
   description:
