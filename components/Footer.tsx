@@ -18,9 +18,19 @@ export default function Footer() {
             © {new Date().getFullYear()} Sidetick SAS. Tous droits réservés.
           </p>
           <p className="text-xs text-white/60">
-            Déjà <span className="font-semibold"><WaitlistCount /></span> fans sur la liste
-            d&apos;attente.
+            Déjà{" "}
+            <span className="font-semibold">
+              <WaitlistCount />
+            </span>{" "}
+            fans sur la liste d&apos;attente.
           </p>
+
+          <Link
+            href="/start#waitlist"
+            className="inline-flex items-center rounded-full bg-sidetick-orange px-4 py-2 text-xs font-semibold text-black hover:brightness-105 transition"
+          >
+            Rejoindre la waiting list
+          </Link>
         </div>
 
         {/* Col 2 — Pages */}
@@ -28,6 +38,7 @@ export default function Footer() {
           <h4 className="font-semibold">Pages</h4>
           <div className="flex flex-col gap-1 text-white/80">
             <Link href="/">Accueil</Link>
+            <Link href="/start">Commencer</Link>
             <Link href="/pros">Organisateurs & artistes</Link>
             <Link href="/about">À propos</Link>
             <Link href="/blog">Blog</Link>
@@ -55,10 +66,7 @@ export default function Footer() {
             <Link href="https://www.instagram.com/sidetick.app/" target="_blank">
               Instagram
             </Link>
-            <Link
-              href="https://www.linkedin.com/company/sidetick-app"
-              target="_blank"
-            >
+            <Link href="https://www.linkedin.com/company/sidetick-app" target="_blank">
               LinkedIn
             </Link>
           </div>
