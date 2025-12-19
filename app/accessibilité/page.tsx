@@ -1,3 +1,4 @@
+// app/accessibilite/page.tsx
 export const metadata = {
   title: "Accessibilité — Sidetick",
   description:
