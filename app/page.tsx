@@ -74,6 +74,15 @@ export default function Page() {
             on peut faire mieux.
           </p>
 
+          {/* SEO copy (invisible) — garde l’UX clean mais aide Google à comprendre */}
+<div className="sr-only">
+  Sidetick est une billetterie en ligne sécurisée et anti-fraude pour concerts et festivals.
+  La plateforme propose une revente officielle encadrée pour limiter les prix abusifs,
+  protéger les fans et lutter contre les faux billets. Sidetick valorise aussi l’engagement
+  avec le Fan Graph : badges, statuts et avantages pour les fans, et une meilleure
+  compréhension des communautés pour les artistes et organisateurs.
+</div>
+
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ProblemCard
               title="Fraude & faux billets"
@@ -105,7 +114,7 @@ export default function Page() {
       <section className="section">
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
-            Notre réponse : une billetterie juste et fun
+              Notre réponse : une billetterie sécurisée, juste et pensée pour les fans
           </h2>
 
           <SolutionsScroller
