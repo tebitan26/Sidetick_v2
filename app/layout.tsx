@@ -79,18 +79,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // JSON-LD Organization (rendu dans le body via le composant JSONLD)
-  const org = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Sidetick",
-    url: "https://www.sidetick.app",
-    logo: "https://www.sidetick.app/logo-white.png",
-    sameAs: [
-      "https://www.instagram.com/sidetick.app/",
-      "https://x.com/sidetick_app",
-      "https://www.linkedin.com/company/sidetick-app",
-    ],
-  };
+ const org = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.sidetick.app/#organization",
+  name: "Sidetick",
+  url: "https://www.sidetick.app",
+  logo: "https://www.sidetick.app/logo-white.png",
+  sameAs: [
+    "https://www.instagram.com/sidetick.app/",
+    "https://x.com/sidetick_app",
+    "https://www.linkedin.com/company/sidetick-app",
+  ],
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.sidetick.app/#website",
+  name: "Sidetick",
+  url: "https://www.sidetick.app",
+  inLanguage: "fr-FR",
+  description:
+    "Billetterie sécurisée nouvelle génération : anti-fraude, revente officielle encadrée et Fan Graph pour récompenser les fans.",
+  publisher: { "@id": "https://www.sidetick.app/#organization" },
+};
+
 
   return (
     <html lang="fr" className={`${mont.variable} ${inter.variable}`}>
@@ -99,6 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <JSONLD data={org} />
+        <JSONLD data={website} />
         <RevealOnScroll />
       </body>
     </html>
