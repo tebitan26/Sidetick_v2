@@ -8,15 +8,14 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black/90 text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10 md:flex-row md:justify-between">
-        {/* Col 1 — Brand */}
+        {/* Col 1 — Brand + CTA */}
         <div className="max-w-xs space-y-3">
           <h3 className="text-lg font-semibold">Sidetick</h3>
+
           <p className="text-sm text-white/80">
             You bring the vibe, we bring the ticket!
           </p>
-          <p className="text-xs text-white/60">
-            © {new Date().getFullYear()} Sidetick SAS. Tous droits réservés.
-          </p>
+
           <p className="text-xs text-white/60">
             Déjà{" "}
             <span className="font-semibold">
@@ -25,12 +24,17 @@ export default function Footer() {
             fans sur la liste d&apos;attente.
           </p>
 
+          {/* CTA harmonisé */}
           <Link
             href="/start#waitlist"
-            className="inline-flex items-center rounded-full bg-sidetick-orange px-4 py-2 text-xs font-semibold text-black hover:brightness-105 transition"
+            className="inline-flex items-center rounded-full bg-sidetick-orange px-4 py-2 text-xs font-semibold text-black hover:brightness-105 hover:-translate-y-0.5 transition"
           >
-            Rejoindre la waiting list
+            Rejoindre la Side
           </Link>
+
+          <p className="text-xs text-white/60">
+            © {new Date().getFullYear()} Sidetick SAS. Tous droits réservés.
+          </p>
         </div>
 
         {/* Col 2 — Pages */}
@@ -83,8 +87,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/60">
-        Ce site a été conçu avec ❤️ par l’équipe Sidetick, pour tous les fans qui
-        font vibrer la scène.
+        Ce site a été conçu avec ❤️ par l’équipe Sidetick, pour tous les fans qui font vibrer la scène.
       </div>
     </footer>
   );
