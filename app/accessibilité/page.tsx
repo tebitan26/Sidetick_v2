@@ -1,5 +1,7 @@
 // app/accessibilite/page.tsx
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Accessibilité — Sidetick",
   description:
     "Engagement d’accessibilité de Sidetick et moyens de contact si vous rencontrez un problème.",
@@ -7,25 +9,29 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div className="section container">
+    <main className="section container">
       <h1>Accessibilité</h1>
-      <p className="mt-2 max-w-prose">
-        Sidetick vise la conformité au RGAA/WCAG niveau AA : contrastes élevés, navigation clavier,
-        alternatives textuelles, structure sémantique et tailles de tap cibles suffisantes.
+
+      <p className="mt-3 max-w-prose text-white/80">
+        Sidetick s’engage à améliorer l’accessibilité de son site (structure
+        sémantique, contrastes, navigation clavier, tailles de tap cibles,
+        compatibilité lecteurs d’écran).
       </p>
 
-      <h2 className="mt-8 text-2xl font-bold">Nous contacter</h2>
-      <p className="mt-2 max-w-prose">
-        Vous avez détecté un problème d’accessibilité ? Écrivez-nous à{" "}
-        <a className="underline" href="mailto:contact@sidetick.app">contact@sidetick.app</a>.
-        Nous vous répondrons rapidement et corrigerons le souci prioritairement.
+      <h2 className="mt-10 text-2xl font-bold">Nous contacter</h2>
+      <p className="mt-3 max-w-prose text-white/80">
+        Si vous rencontrez un problème d’accessibilité, écrivez-nous à{" "}
+        <a className="underline" href="mailto:contact@sidetick.app">
+          contact@sidetick.app
+        </a>{" "}
+        et nous traiterons la demande en priorité.
       </p>
 
-      <h2 className="mt-8 text-2xl font-bold">Compatibilité</h2>
-      <ul className="list-disc pl-6 text-white/80">
-        <li>Mobiles iOS/Android récents, Safari, Chrome, Firefox, Edge.</li>
-        <li>Support du zoom, tailles de polices dynamiques et lecteurs d’écran.</li>
+      <h2 className="mt-10 text-2xl font-bold">Compatibilité</h2>
+      <ul className="mt-3 list-disc pl-6 text-white/80">
+        <li>Navigateurs : Chrome, Safari, Firefox, Edge (versions récentes).</li>
+        <li>Support du zoom et des tailles de polices dynamiques.</li>
       </ul>
-    </div>
+    </main>
   );
 }
