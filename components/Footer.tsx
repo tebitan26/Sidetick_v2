@@ -50,9 +50,10 @@ export default function Footer() {
         <div className="space-y-3 text-sm">
           <h4 className="font-semibold">Légal</h4>
           <div className="flex flex-col gap-1 text-white/80">
-            <Link href="/legal">Mentions légales</Link>
+            <Link href="/legal-mentions">Mentions légales</Link>
             <Link href="/privacy">Confidentialité</Link>
             <Link href="/terms">Conditions</Link>
+            <Link href="/accessibilite">Accessibilité</Link>
           </div>
         </div>
 
