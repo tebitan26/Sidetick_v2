@@ -249,10 +249,6 @@ export default function Page() {
               <div className="mx-auto max-w-md">
                 <WaitlistForm />
               </div>
-
-              <p className="mt-3 text-xs text-white/70">
-                Aucun spam. Désinscription en 1 clic.
-              </p>
             </div>
           </div>
         </div>
