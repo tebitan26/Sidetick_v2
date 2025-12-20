@@ -1,4 +1,4 @@
-// components/SocialProof.tsx
+// components/SocialProofStrip.tsx
 import Image from "next/image";
 
 type Logo = { src: string; alt: string; href?: string };
@@ -14,76 +14,67 @@ const supporters: Logo[] = [
 
 const institutions: Logo[] = [
   { src: "/og/acc2.png", alt: "CNM – Centre national de la musique", href: "https://cnm.fr" },
-  { src: "/og/acc1.png", alt: "CCI Lyon Saint-Étienne Roanne", href: "https://www.cci.fr" },
+  { src: "/og/acc3.png", alt: "France Digitale", href: "https://www.francedigitale.org" },
+  { src: "/og/acc4.png", alt: "Bpifrance", href: "https://www.bpifrance.fr" },
 ];
 
-function RowMarquee({ items, duration = 28 }: { items: Logo[]; duration?: number }) {
-  // On duplique le tableau pour obtenir un défilement “bouclé”
+function RowMarquee({ items, duration = 18 }: { items: Logo[]; duration?: number }) {
   const loop = [...items, ...items];
-
   return (
-    <div className="relative overflow-hidden group marquee-mask">
+    <div className="relative overflow-hidden marquee-mask">
       <ul
-        className="flex items-center gap-10 animate-marquee group-hover:[animation-play-state:paused] motion-reduce:[animation:none]"
+        className="flex items-center gap-10 animate-marquee motion-reduce:[animation:none]"
         style={{ ["--marquee-duration" as any]: `${duration}s` }}
       >
-        {loop.map((l, i) => {
-          const img = (
-            <Image
-              src={l.src}
-              alt={l.alt}
-              width={180}
-              height={72}
-              className="h-12 w-auto md:h-14 lg:h-16 opacity-90 hover:opacity-100 transition"
-              sizes="(min-width:1024px) 180px, (min-width:768px) 150px, 120px"
-              loading="lazy"
-            />
-          );
-          return (
-            <li key={`${l.src}-${i}`} className="shrink-0">
-              {l.href ? (
-                <a href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.alt}>
-                  {img}
-                </a>
-              ) : (
-                img
-              )}
-            </li>
-          );
-        })}
+        {loop.map((l, i) => (
+          <li key={`${l.src}-${i}`} className="shrink-0">
+            {l.href ? (
+              <a href={l.href} target="_blank" rel="noreferrer" aria-label={l.alt}>
+                <Image
+                  src={l.src}
+                  alt={l.alt}
+                  width={160}
+                  height={64}
+                  className="h-10 w-auto md:h-12 opacity-90 hover:opacity-100 transition"
+                />
+              </a>
+            ) : (
+              <Image
+                src={l.src}
+                alt={l.alt}
+                width={160}
+                height={64}
+                className="h-10 w-auto md:h-12 opacity-90"
+              />
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   );
 }
 
-export default function SocialProof() {
+export default function SocialProofStrip() {
   return (
-    <>
-      {/* Section 1 : Soutiens */}
-      <section className="section section-alt">
-        <div className="container">
-          <h2>Ils nous soutiennent</h2>
-          <p className="mt-2 text-white/70 max-w-prose">
-            Des entreprises et partenaires croient en notre vision d’une billetterie plus juste et sécurisée.
-          </p>
-          <div className="mt-6">
-            <RowMarquee items={supporters} duration={32} />
-          </div>
-        </div>
-      </section>
+    <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6">
+      <p className="text-sm font-semibold text-white/85">Ils nous soutiennent</p>
+      <p className="mt-1 text-sm text-white/70 max-w-prose">
+        Des partenaires croient en notre vision d’une billetterie plus juste et sécurisée.
+      </p>
 
-      {/* Section 2 : Accompagnateurs */}
-      <section className="section">
-        <div className="container">
-          <h2>Ils nous accompagnent</h2>
-          <p className="mt-2 text-white/70 max-w-prose">
-            Nous sommes conseillés et formés par des institutions reconnues qui nous aident à structurer le projet.
-          </p>
-          <div className="mt-6">
-            <RowMarquee items={institutions} duration={22} />
-          </div>
+      <div className="mt-5">
+        <RowMarquee items={supporters} duration={18} />
+      </div>
+
+      <div className="mt-6 pt-6 border-t border-white/10">
+        <p className="text-sm font-semibold text-white/85">Ils nous accompagnent</p>
+        <p className="mt-1 text-sm text-white/70 max-w-prose">
+          Institutions et programmes qui nous aident à structurer le projet.
+        </p>
+        <div className="mt-5">
+          <RowMarquee items={institutions} duration={22} />
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }
