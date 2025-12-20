@@ -1,13 +1,7 @@
 // app/page.tsx
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Sidetick — Billetterie sécurisée & revente officielle | Fan Graph",
-  description:
-    "Billetterie en ligne anti-fraude : tickets sécurisés, revente officielle encadrée, et Fan Graph pour récompenser les fans (badges, statuts, avantages).",
-};
 import Image from "next/image";
 import Link from "next/link";
+
 import WaitlistForm from "@/components/WaitlistForm";
 import UltraFan from "@/components/UltraFan";
 import SocialProof from "@/components/SocialProof";
@@ -43,8 +37,8 @@ export default function Page() {
 
           <p className="mt-6 text-white/80 max-w-2xl mx-auto text-lg md:text-xl reveal-up">
             La billetterie nouvelle génération : <strong>sécurisée</strong>,{" "}
-            <strong>juste</strong> et
-            <strong> faite pour les fans & les artistes</strong>.
+            <strong>juste</strong> et{" "}
+            <strong>faite pour les fans & les artistes</strong>.
           </p>
 
           {/* Formulaire dans le Hero */}
@@ -52,17 +46,24 @@ export default function Page() {
             <WaitlistForm />
           </div>
 
-          {/* compteur masqué pour l’instant (réactivable via env) */}
           {SHOW_WAITLIST_COUNT && (
-            <div className="mt-4">
-              {/* <WaitlistCount /> */}
-            </div>
+            <div className="mt-4">{/* <WaitlistCount /> */}</div>
           )}
+
+          {/* CTA secondaire pro */}
+          <div className="mt-6 reveal-up">
+            <Link
+              href="/pros"
+              className="text-sm text-white/80 underline underline-offset-4 hover:text-white"
+            >
+              Je suis organisateur / artiste →
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* =========================
-          SECTION PROBLÈMES (cartes interactives)
+          SECTION PROBLÈMES
         ========================= */}
       <section className="section section-alt">
         <div className="container">
@@ -73,15 +74,6 @@ export default function Page() {
             Fraude, prix abusifs, impossibilité de revendre, fans invisibles :
             on peut faire mieux.
           </p>
-
-          {/* SEO copy (invisible) — garde l’UX clean mais aide Google à comprendre */}
-<div className="sr-only">
-  Sidetick est une billetterie en ligne sécurisée et anti-fraude pour concerts et festivals.
-  La plateforme propose une revente officielle encadrée pour limiter les prix abusifs,
-  protéger les fans et lutter contre les faux billets. Sidetick valorise aussi l’engagement
-  avec le Fan Graph : badges, statuts et avantages pour les fans, et une meilleure
-  compréhension des communautés pour les artistes et organisateurs.
-</div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ProblemCard
@@ -105,156 +97,172 @@ export default function Page() {
               img="/problems/problems_invisible_fans.jpg"
             />
           </div>
+
+          {/* SEO copy invisible (propre, sans casser l’UX) */}
+          <div className="sr-only">
+            Sidetick est une billetterie en ligne sécurisée et anti-fraude pour concerts
+            et festivals. La plateforme propose une revente officielle encadrée pour
+            limiter les prix abusifs, protéger les fans et lutter contre les faux billets.
+            Sidetick valorise aussi l’engagement avec le Fan Graph : badges, statuts et
+            avantages pour les fans, et une meilleure compréhension des communautés pour
+            les artistes et organisateurs.
+          </div>
         </div>
       </section>
 
       {/* =========================
-          SECTION SOLUTIONS (scène qui se remplit)
+          SECTION SOLUTIONS (scroller)
         ========================= */}
       <section className="section">
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
-              Notre réponse : une billetterie sécurisée, juste et pensée pour les fans
+            Notre réponse : une billetterie sécurisée, juste et pensée pour les fans
           </h2>
-<p className="mt-3 max-w-3xl text-sm md:text-base text-white/75 reveal-up">
-  Une billetterie sécurisée, avec <strong>revente officielle</strong> et{" "}
-  <strong>Fan Graph</strong> pour récompenser les fans.{" "}
-  <Link href="/start" className="underline underline-offset-4 hover:text-white">
-    Commencer
-  </Link>{" "}
-  ou découvrir l’espace{" "}
-  <Link href="/pros" className="underline underline-offset-4 hover:text-white">
-    organisateurs & artistes
-  </Link>
-  .
-</p>
 
-          <SolutionsScroller
-            slides={[
-              { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
-              {
-                src: "/solutions/solutions_half_full_stage.jpg",
-                alt: "Scène à moitié pleine",
-              },
-              { src: "/solutions/solutions_full_stage.jpg", alt: "Scène pleine" },
-            ]}
-            steps={[
-              {
-                title: "Billets infalsifiables",
-                desc: "Chaque ticket est unique et vérifié — impossible à copier.",
-                colorClass: "from-violet-300 to-violet-500",
-              },
-              {
-                title: "Revente simple & officielle",
-                desc: "Revends sans stress et sans arnaque, depuis ton smartphone.",
-                colorClass: "from-blue-300 to-blue-500",
-              },
-              {
-                title: "Fans récompensés • Tout-en-un, mobile",
-                desc: "Plus tu vibres, plus tu gagnes — ton billet, ta revente, tes avantages.",
-                colorClass: "from-orange-300 to-orange-500",
-              },
-            ]}
-            heightVh={320}
-            overlay
-          />
+          <p className="mt-3 max-w-3xl text-sm md:text-base text-white/75 reveal-up">
+            Une billetterie sécurisée, avec <strong>revente officielle</strong> et{" "}
+            <strong>Fan Graph</strong> pour récompenser les fans.{" "}
+            <Link
+              href="/start"
+              className="underline underline-offset-4 hover:text-white"
+            >
+              Commencer
+            </Link>{" "}
+            ou découvrir l’espace{" "}
+            <Link
+              href="/pros"
+              className="underline underline-offset-4 hover:text-white"
+            >
+              organisateurs & artistes
+            </Link>
+            .
+          </p>
 
-          {/* CTA secondaire */}
+          <div className="mt-8">
+            <SolutionsScroller
+              slides={[
+                { src: "/solutions/solutions_empty_stage.jpg", alt: "Scène vide" },
+                {
+                  src: "/solutions/solutions_half_full_stage.jpg",
+                  alt: "Scène à moitié pleine",
+                },
+                { src: "/solutions/solutions_full_stage.jpg", alt: "Scène pleine" },
+              ]}
+              steps={[
+                {
+                  title: "Billets infalsifiables",
+                  desc: "Chaque ticket est unique et vérifié — impossible à copier.",
+                  colorClass: "from-violet-300 to-violet-500",
+                },
+                {
+                  title: "Revente simple & officielle",
+                  desc: "Revends sans stress et sans arnaque, depuis ton smartphone.",
+                  colorClass: "from-blue-300 to-blue-500",
+                },
+                {
+                  title: "Fans récompensés • Tout-en-un, mobile",
+                  desc: "Plus tu vibres, plus tu gagnes — ton billet, ta revente, tes avantages.",
+                  colorClass: "from-orange-300 to-orange-500",
+                },
+              ]}
+              heightVh={320}
+              overlay
+            />
+          </div>
+
           <div className="mt-10 text-center reveal-up">
             <Link
-              href="#waitlist"
+              href="/start#waitlist"
               className="inline-flex items-center justify-center rounded-xl bg-white/15 px-5 py-3 hover:bg-white/25 transition"
             >
-              Rejoins la waiting list
+              Rejoindre la Side
             </Link>
           </div>
         </div>
       </section>
 
       {/* =========================
-          ULTRAFAN
+          ULTRAFAN (Fan Graph B2C)
         ========================= */}
       <UltraFan />
 
-     {/* =========================
-    PRE-CTA STRIP (Social proof light + FAQ light)
-  ========================= */}
-<section className="section">
-  <div className="container">
-    {/* Social proof light */}
-    <div className="reveal-up">
-      <p className="text-sm uppercase tracking-wide text-white/60">
-        Ils construisent le futur du live avec nous
-      </p>
-      <h2 className="mt-2 text-2xl md:text-3xl font-extrabold">
-        Artistes, marques et institutions nous font confiance
-      </h2>
+      {/* =========================
+          PRE-CTA STRIP (social proof + FAQ light)
+        ========================= */}
+      <section className="section">
+        <div className="container">
+          <div className="reveal-up">
+            <p className="text-sm uppercase tracking-wide text-white/60">
+              Ils construisent le futur du live avec nous
+            </p>
+            <h2 className="mt-2 text-2xl md:text-3xl font-extrabold">
+              Artistes, marques et institutions nous font confiance
+            </h2>
 
-      {/* IMPORTANT : pas de gros bloc gris, on laisse respirer */}
-      <div className="mt-6">
-        <SocialProof />
-      </div>
-    </div>
+            <div className="mt-6">
+              <SocialProof />
+            </div>
+          </div>
 
-    {/* FAQ light */}
-    <div className="mt-12 reveal-up">
-      <FAQHomeLite />
-    </div>
+          <div className="mt-12 reveal-up">
+            <FAQHomeLite />
+          </div>
 
-    {/* Respiration visuelle avant CTA */}
-    <div className="mt-14" />
-  </div>
-</section>
-
+          {/* Respiration avant CTA final */}
+          <div className="mt-14" />
+        </div>
+      </section>
 
       {/* =========================
-    CTA FINAL (premium, centré, conversion)
-  ========================= */}
-<section id="waitlist" className="section relative overflow-hidden">
-  <Image
-    src="/cta/cta_final_lasers.jpg"
-    alt="Rejoins la Side avant le lancement"
-    fill
-    sizes="100vw"
-    className="absolute inset-0 -z-10 object-cover opacity-60"
-  />
-  <div className="absolute inset-0 -z-10 bg-black/35" />
+          CTA FINAL (premium)
+        ========================= */}
+      <section id="waitlist" className="section relative overflow-hidden">
+        <Image
+          src="/cta/cta_final_lasers.jpg"
+          alt="Rejoins la Side avant le lancement"
+          fill
+          sizes="100vw"
+          className="absolute inset-0 -z-10 object-cover opacity-60"
+        />
+        <div className="absolute inset-0 -z-10 bg-black/35" />
 
-  <div className="container">
-    <div className="mx-auto max-w-2xl text-center">
-      <p className="text-sm uppercase tracking-wide text-white/70 reveal-up">
-        Accès anticipé
-      </p>
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm uppercase tracking-wide text-white/70 reveal-up">
+              Accès anticipé
+            </p>
 
-      <h2 className="mt-2 text-3xl md:text-4xl font-extrabold reveal-up">
-        Rejoins la Side avant le lancement
-      </h2>
+            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold reveal-up">
+              Rejoins la Side avant le lancement
+            </h2>
 
-      <p className="mt-3 text-white/80 reveal-up">
-        Accès anticipé, <strong>badges fondateurs</strong> et{" "}
-        <strong>événements pilotes</strong> réservés aux premiers membres.
-      </p>
+            <p className="mt-3 text-white/80 reveal-up">
+              Accès anticipé, <strong>badges fondateurs</strong> et{" "}
+              <strong>événements pilotes</strong> réservés aux premiers membres.
+            </p>
 
-      <p className="mt-3 text-sm text-white/70 reveal-up">
-        Déjà rejoint par des fans, artistes et partenaires du live.
-      </p>
+            <p className="mt-3 text-sm text-white/70 reveal-up">
+              Déjà rejoint par des fans, artistes et partenaires du live.
+            </p>
 
-      <div className="mt-8 reveal-up">
-        <div className="mx-auto max-w-md">
-          <WaitlistForm />
+            <div className="mt-8 reveal-up">
+              <div className="mx-auto max-w-md">
+                <WaitlistForm />
+              </div>
+
+              <p className="mt-3 text-xs text-white/70">
+                Aucun spam. Désinscription en 1 clic.
+              </p>
+            </div>
+          </div>
         </div>
-
-        <p className="mt-3 text-xs text-white/70">
-          Aucun spam. Désinscription en 1 clic.
-        </p>
-      </div>
+      </section>
     </div>
-  </div>
-</section>
-
+  );
+}
 
 /* ===========================================================
-   Composants locaux (pas de state → pas de "use client")
+   Composants locaux
    =========================================================== */
 
 function ProblemCard({
@@ -281,25 +289,10 @@ function ProblemCard({
 
       <div className="p-4">
         <h3 className="font-semibold">{title}</h3>
-        <p className="mt-1 text-sm text-white/75 line-clamp-2 group-hover:line-clamp-none transition-[line-clamp]">
+        <p className="mt-1 text-sm text-white/75 line-clamp-2 group-hover:line-clamp-none">
           {subtitle}
         </p>
       </div>
     </article>
-  );
-}
-
-function StageImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur reveal-up">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="100vw"
-        className="object-cover"
-        priority={false}
-      />
-    </div>
   );
 }
