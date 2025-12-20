@@ -116,6 +116,18 @@ export default function Page() {
           <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
               Notre réponse : une billetterie sécurisée, juste et pensée pour les fans
           </h2>
+<p className="mt-3 max-w-3xl text-sm md:text-base text-white/75 reveal-up">
+  Une billetterie sécurisée, avec <strong>revente officielle</strong> et{" "}
+  <strong>Fan Graph</strong> pour récompenser les fans.{" "}
+  <Link href="/start" className="underline underline-offset-4 hover:text-white">
+    Commencer
+  </Link>{" "}
+  ou découvrir l’espace{" "}
+  <Link href="/pros" className="underline underline-offset-4 hover:text-white">
+    organisateurs & artistes
+  </Link>
+  .
+</p>
 
           <SolutionsScroller
             slides={[
