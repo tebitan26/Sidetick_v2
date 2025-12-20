@@ -1,11 +1,14 @@
 // app/features/page.tsx
 import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Fonctionnalités — Sidetick",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Fonctionnalités Sidetick — Billetterie sécurisée, revente officielle, Fan Graph",
   description:
-    "Les fonctionnalités de Sidetick sont désormais regroupées sur les pages d’accueil et Pros.",
+    "Découvrez Sidetick : billetterie en ligne anti-fraude, revente officielle encadrée, et Fan Graph (badges, statuts, avantages) pour récompenser les fans et aider les organisateurs.",
 };
+
 
 export default function FeaturesPage() {
   // On redirige proprement pour éviter le contenu dupliqué
