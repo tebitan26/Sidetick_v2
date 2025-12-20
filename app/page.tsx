@@ -1,4 +1,11 @@
 // app/page.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sidetick — Billetterie sécurisée & revente officielle | Fan Graph",
+  description:
+    "Billetterie en ligne anti-fraude : tickets sécurisés, revente officielle encadrée, et Fan Graph pour récompenser les fans (badges, statuts, avantages).",
+};
 import Image from "next/image";
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
