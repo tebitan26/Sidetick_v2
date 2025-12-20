@@ -30,6 +30,7 @@ export default function WaitlistForm({ referrer }: Props) {
     setErr(null);
     setOk(null);
 
+    // Validations
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setErr("Email invalide.");
       return;
@@ -58,6 +59,7 @@ export default function WaitlistForm({ referrer }: Props) {
       setLoading(true);
       const normalized = email.trim().toLowerCase();
 
+      // récupère le ref depuis la prop OU depuis l’URL courante
       const urlRef =
         referrer ??
         (typeof location !== "undefined"
@@ -93,7 +95,10 @@ export default function WaitlistForm({ referrer }: Props) {
       onSubmit={onSubmit}
       className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6"
     >
-      <label htmlFor="email" className="block mb-2 text-sm font-semibold text-white/85">
+      <label
+        htmlFor="email"
+        className="block mb-2 text-sm font-semibold text-white/85"
+      >
         Ton email
       </label>
 
@@ -125,8 +130,9 @@ export default function WaitlistForm({ referrer }: Props) {
           onChange={() => setConsent((v) => !v)}
           className="mt-1"
         />
-        <label htmlFor="consent" className="text-sm text-white/80">
-          J’accepte de recevoir des infos sur le lancement de Sidetick.
+        {/* ✅ leading-snug : ici, sur le label de la checkbox */}
+        <label htmlFor="consent" className="text-sm text-white/80 leading-snug">
+          J’accepte de recevoir les infos de lancement.
         </label>
       </div>
 
