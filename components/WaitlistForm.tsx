@@ -30,23 +30,27 @@ export default function WaitlistForm({ referrer }: Props) {
     setErr(null);
     setOk(null);
 
-    // Validations
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErr("Email invalide."); return;
+      setErr("Email invalide.");
+      return;
     }
     if (!consent) {
-      setErr("Merci d'accepter de recevoir nos emails de lancement."); return;
+      setErr("Merci d’accepter de recevoir les infos de lancement.");
+      return;
     }
     if (honeypot.current && honeypot.current.value) {
-      setErr("Oups, une erreur est survenue."); return;
+      setErr("Oups, une erreur est survenue.");
+      return;
     }
 
     const now = Date.now();
     if (firstFocusAt.current && now - firstFocusAt.current < 2000) {
-      setErr("Trop rapide 😉 Réessaie dans un instant."); return;
+      setErr("Trop rapide 😉 Réessaie dans un instant.");
+      return;
     }
     if (now - lastSubmitAt.current < 10000) {
-      setErr("Patiente quelques secondes avant une nouvelle tentative."); return;
+      setErr("Patiente quelques secondes avant une nouvelle tentative.");
+      return;
     }
     lastSubmitAt.current = now;
 
@@ -54,22 +58,20 @@ export default function WaitlistForm({ referrer }: Props) {
       setLoading(true);
       const normalized = email.trim().toLowerCase();
 
-      // récupère le ref depuis la prop OU depuis l’URL courante
       const urlRef =
         referrer ??
         (typeof location !== "undefined"
           ? new URLSearchParams(location.search).get("ref") || undefined
           : undefined);
 
-      // URL de callback minimale et robuste (ConfirmClient lit aussi ?ref=)
       const base = typeof location !== "undefined" ? location.origin : "";
       const url = new URL("/waitlist/confirm", base);
       if (urlRef) url.searchParams.set("ref", urlRef);
 
-      // Optionnel: mémoriser l’email pour proposer “renvoyer le mail” sur /waitlist/confirm
-      try { localStorage.setItem("sidetick:lastEmail", normalized); } catch {}
+      try {
+        localStorage.setItem("sidetick:lastEmail", normalized);
+      } catch {}
 
-      // OTP Supabase (double opt-in) → l’email parle de “confirmation”, pas de “login”
       const { error } = await sb.auth.signInWithOtp({
         email: normalized,
         options: { emailRedirectTo: url.toString() },
@@ -77,7 +79,8 @@ export default function WaitlistForm({ referrer }: Props) {
       if (error) throw error;
 
       setOk("Vérifie ta boîte mail pour confirmer ton inscription ✉️");
-      setEmail(""); setConsent(false);
+      setEmail("");
+      setConsent(false);
     } catch (e: any) {
       setErr(e?.message || "Oups, ça a coupé. Réessaie dans un instant.");
     } finally {
@@ -86,35 +89,57 @@ export default function WaitlistForm({ referrer }: Props) {
   }
 
   return (
-    <form id="waitlist" onSubmit={onSubmit} className="card mt-12">
-      <label htmlFor="email" className="block mb-2">Ton email</label>
+    <form
+      onSubmit={onSubmit}
+      className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6"
+    >
+      <label htmlFor="email" className="block mb-2 text-sm font-semibold text-white/85">
+        Ton email
+      </label>
+
       <input
         id="email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full rounded-xl px-4 py-3 text-black"
+        className="w-full rounded-2xl px-4 py-3 text-black outline-none focus:ring-2 focus:ring-sidetick-orange/60"
         placeholder="ton.email@exemple.com"
         required
       />
-      {/* Honeypot */}
-      <input ref={honeypot} type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
 
-      <div className="mt-3 flex items-center gap-2">
-        <input id="consent" type="checkbox" checked={consent} onChange={() => setConsent(v => !v)} />
-        <label htmlFor="consent" className="text-sm">
-          J’accepte de recevoir des emails sur le lancement de Sidetick.
+      {/* Honeypot */}
+      <input
+        ref={honeypot}
+        type="text"
+        name="company"
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+      />
+
+      <div className="mt-3 flex items-start gap-2">
+        <input
+          id="consent"
+          type="checkbox"
+          checked={consent}
+          onChange={() => setConsent((v) => !v)}
+          className="mt-1"
+        />
+        <label htmlFor="consent" className="text-sm text-white/80">
+          J’accepte de recevoir des infos sur le lancement de Sidetick.
         </label>
       </div>
 
-      <button disabled={loading} className="btn mt-4">
-        {loading ? "Envoi..." : "Rejoindre la liste d’attente"}
+      <button disabled={loading} className="btn mt-4 w-full">
+        {loading ? "Envoi..." : "Rejoindre la Side"}
       </button>
 
-      <p className="mt-3 text-sm text-white/80">Nous n’envoyons pas de spam. Désinscription en 1 clic.</p>
+      <p className="mt-3 text-xs text-white/70">
+        Aucun spam. Désinscription en 1 clic.
+      </p>
 
-      {ok &&  <p className="mt-3 text-green-300">{ok}</p>}
-      {err && <p className="mt-3 text-red-300">{err}</p>}
+      {ok && <p className="mt-3 text-green-300 text-sm">{ok}</p>}
+      {err && <p className="mt-3 text-red-300 text-sm">{err}</p>}
     </form>
   );
 }
