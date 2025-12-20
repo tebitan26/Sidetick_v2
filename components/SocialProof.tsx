@@ -13,9 +13,10 @@ const supporters: Logo[] = [
 ];
 
 const institutions: Logo[] = [
-  { src: "/og/acc2.png", alt: "CNM – Centre national de la musique", href: "https://cnm.fr" },
-  { src: "/og/acc3.png", alt: "France Digitale", href: "https://www.francedigitale.org" },
-  { src: "/og/acc4.png", alt: "Bpifrance", href: "https://www.bpifrance.fr" },
+  { src: "/og/acc1.png", alt: "CCI – Chambre du Commerce et de l'Industrie", href: "https://www.cci.fr/" },
+  { src: "/og/acc2.png", alt: "CNM - Centre National de la Musique", href: "https://cnm.fr/" },
+  { src: "/og/acc3.png", alt: "France 2030", href: "https://www.economie.gouv.fr/france-2030" },
+  { src: "/og/acc4.png", alt: "BPI France", href: "https://www.bpifrance.fr/" },
 ];
 
 function RowMarquee({ items, duration = 18 }: { items: Logo[]; duration?: number }) {
