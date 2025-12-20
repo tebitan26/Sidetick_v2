@@ -11,7 +11,7 @@ import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 import UltraFan from "@/components/UltraFan";
 import SocialProof from "@/components/SocialProof";
-import FAQHome from "@/components/FAQHome";
+import FAQHomeLite from "@/components/FAQHomeLite";
 import SolutionsScroller from "@/components/SolutionsScroller";
 import { SHOW_WAITLIST_COUNT } from "@/lib/env";
 
@@ -176,72 +176,82 @@ export default function Page() {
         ========================= */}
       <UltraFan />
 
-      {/* =========================
-          SOCIAL PROOF + FAQ + FORM
-        ========================= */}
-      <section className="section section-alt">
-        <div className="container">
-          <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
-            Ils croient déjà en nous
-          </h2>
-          <p className="mt-3 max-w-prose text-white/80 reveal-up">
-            Artistes, marques et institutions nous soutiennent pour protéger
-            l’expérience live.
-          </p>
+     {/* =========================
+    PRE-CTA STRIP (Social proof light + FAQ light)
+  ========================= */}
+<section className="section">
+  <div className="container">
+    {/* Social proof light */}
+    <div className="reveal-up">
+      <p className="text-sm uppercase tracking-wide text-white/60">
+        Ils construisent le futur du live avec nous
+      </p>
+      <h2 className="mt-2 text-2xl md:text-3xl font-extrabold">
+        Artistes, marques et institutions nous font confiance
+      </h2>
 
-          <div className="mt-8 reveal-up">
-            <SocialProof />
-          </div>
-
-          <div className="mt-12 reveal-up">
-            <FAQHome />
-          </div>
-
-          {/* Formulaire + compteur en bas de page */}
-          <div id="waitlist" className="mt-12 max-w-md reveal-up">
-            <WaitlistForm />
-            {SHOW_WAITLIST_COUNT && (
-              <div className="mt-4">
-                {/* <WaitlistCount /> */}
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* =========================
-          CTA FINAL
-        ========================= */}
-      <section className="section relative overflow-hidden">
-        <Image
-          src="/cta/cta_final_lasers.jpg"
-          alt="Rejoins la Side aujourd’hui"
-          fill
-          sizes="100vw"
-          className="absolute inset-0 -z-10 object-cover opacity-60"
-        />
-        <div className="container text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold reveal-up">
-            Le futur du live commence avec toi.
-          </h2>
-          <p className="mt-3 text-white/80 max-w-2xl mx-auto reveal-up">
-            Rejoins une communauté qui veut une billetterie{" "}
-            <strong>plus juste</strong> et
-            <strong> plus fun</strong>.
-          </p>
-          <div className="mt-8 reveal-up">
-            <Link
-              href="#waitlist"
-              className="inline-flex items-center justify-center rounded-xl bg-white/15 px-6 py-3 hover:bg-white/25 transition"
-            >
-              Rejoins la Side aujourd’hui
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* IMPORTANT : pas de gros bloc gris, on laisse respirer */}
+      <div className="mt-6">
+        <SocialProof />
+      </div>
     </div>
-  );
-}
+
+    {/* FAQ light */}
+    <div className="mt-12 reveal-up">
+      <FAQHomeLite />
+    </div>
+
+    {/* Respiration visuelle avant CTA */}
+    <div className="mt-14" />
+  </div>
+</section>
+
+
+      {/* =========================
+    CTA FINAL (premium, centré, conversion)
+  ========================= */}
+<section id="waitlist" className="section relative overflow-hidden">
+  <Image
+    src="/cta/cta_final_lasers.jpg"
+    alt="Rejoins la Side avant le lancement"
+    fill
+    sizes="100vw"
+    className="absolute inset-0 -z-10 object-cover opacity-60"
+  />
+  <div className="absolute inset-0 -z-10 bg-black/35" />
+
+  <div className="container">
+    <div className="mx-auto max-w-2xl text-center">
+      <p className="text-sm uppercase tracking-wide text-white/70 reveal-up">
+        Accès anticipé
+      </p>
+
+      <h2 className="mt-2 text-3xl md:text-4xl font-extrabold reveal-up">
+        Rejoins la Side avant le lancement
+      </h2>
+
+      <p className="mt-3 text-white/80 reveal-up">
+        Accès anticipé, <strong>badges fondateurs</strong> et{" "}
+        <strong>événements pilotes</strong> réservés aux premiers membres.
+      </p>
+
+      <p className="mt-3 text-sm text-white/70 reveal-up">
+        Déjà rejoint par des fans, artistes et partenaires du live.
+      </p>
+
+      <div className="mt-8 reveal-up">
+        <div className="mx-auto max-w-md">
+          <WaitlistForm />
+        </div>
+
+        <p className="mt-3 text-xs text-white/70">
+          Aucun spam. Désinscription en 1 clic.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 /* ===========================================================
    Composants locaux (pas de state → pas de "use client")
