@@ -3,12 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { faqsByCategory } from "@/lib/faqs";
 import { HelpCircle, ChevronDown, Inbox } from "lucide-react";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "FAQ — Sidetick",
+export const metadata: Metadata = {
+  title: "FAQ Sidetick — Billetterie sécurisée, revente officielle & Fan Graph",
   description:
-    "Questions fréquentes sur l’achat, la revente officielle, les paiements, l’app mobile, le contrôle QR & NFC et la sécurité.",
+    "Réponses aux questions fréquentes : sécurité des billets, revente officielle encadrée, Fan Graph, badges, UltraFan, et fonctionnement pour organisateurs.",
 };
+
 
 // Génère un JSON-LD à partir des 8 premières questions (meilleur SEO)
 function FAQSchema() {
