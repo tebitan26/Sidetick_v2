@@ -11,7 +11,6 @@ export const metadata: Metadata = {
     "Réponses aux questions fréquentes : sécurité des billets, revente officielle encadrée, Fan Graph, badges, UltraFan, et fonctionnement pour organisateurs.",
 };
 
-
 // Génère un JSON-LD à partir des 8 premières questions (meilleur SEO)
 function FAQSchema() {
   const all = faqsByCategory.flatMap((c) => c.items);
@@ -39,7 +38,7 @@ export default function FAQPage() {
   const allFaqs = faqsByCategory.flatMap((c) => c.items);
 
   return (
-    <div className="relative">
+    <div id="top" className="relative">
       {/* HERO (image optionnelle) */}
       <section className="relative section hero-gradient overflow-hidden">
         {/* Mets ton image en /public/faq/faq_bg.jpg si tu veux l’activer */}
@@ -54,7 +53,10 @@ export default function FAQPage() {
         <div className="container">
           {/* Fil d’Ariane simple */}
           <nav aria-label="breadcrumb" className="text-sm text-white/70 mb-2">
-            <Link className="underline" href="/">Accueil</Link> / <span>FAQ</span>
+            <Link className="underline" href="/">
+              Accueil
+            </Link>{" "}
+            / <span>FAQ</span>
           </nav>
 
           <div className="max-w-2xl">
@@ -94,7 +96,7 @@ export default function FAQPage() {
               <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-3">
                 <p className="text-xs text-white/70">
                   Tu n’as pas trouvé ? Écris-nous ou{" "}
-                  <Link href="/#waitlist" className="underline">
+                  <Link href="/start#waitlist" className="underline">
                     rejoins la liste
                   </Link>
                   .
@@ -137,7 +139,6 @@ export default function FAQPage() {
                         />
                       </summary>
                       <div className="mt-2 text-white/80 leading-relaxed">
-                        {/* On accepte déjà du texte riche dans lib/faqs si besoin */}
                         <p>{item.a}</p>
                       </div>
                     </details>
@@ -160,7 +161,10 @@ export default function FAQPage() {
               </div>
               <p className="mt-2 text-white/80">
                 Écris-nous et nous reviendrons vers toi rapidement.
-                En attendant, rejoins la <Link href="/#waitlist" className="underline">liste d’attente</Link>{" "}
+                En attendant, rejoins la{" "}
+                <Link href="/start#waitlist" className="underline">
+                  liste d’attente
+                </Link>{" "}
                 pour tester l’app en avant-première.
               </p>
             </div>
