@@ -1,52 +1,117 @@
-@tailwind base;@tailwind components;@tailwind utilities;
-:root{--bg:#000a25;--accent:#ff7d00;--ink:#ffecd1;}
-html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink)}
-.container{@apply max-w-6xl mx-auto px-4}
-.section { @apply py-16 md:py-20; }
-.btn{@apply inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold transition;background:theme('colors.sidetick.orange');color:#000}
-.btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
-.card {@apply rounded-2xl bg-white/5 backdrop-blur-sm shadow-lg p-6;}
-h1,h2,h3{@apply font-bold}
-h1{@apply text-4xl md:text-5xl leading-tight}
-h2{@apply text-2xl md:text-3xl mt-8}
-p{@apply leading-7}
-a{@apply underline-offset-2 hover:underline}
-small.muted{@apply text-white/60}
-.hero-gradient{background:radial-gradient(1200px 600px at 50% 0%, rgba(162,136,227,.25), transparent 60%),radial-gradient(800px 400px at 10% 20%, rgba(153,178,221,.2), transparent 60%)}
-.section-alt{background:rgba(255,236,209,.06)}
-/* Typo corps */
-body { font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-/* === SocialProof marquee === */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); } /* car on duplique la liste */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   Sidetick — Design Tokens (Sprint 2)
+   ========================================================= */
+:root{
+  /* Couleurs (alignées sur ta charte) */
+  --bg:#1B003B;             /* sidetick-bg */
+  --ink:#FFECD1;            /* ton "cream" actuel (lisible, premium) */
+  --muted:rgba(255,236,209,.72);
+  --soft:rgba(255,236,209,.10);
+  --soft-2:rgba(255,236,209,.06);
+
+  /* Typo : on garde Inter, et si tu ajoutes Cabinet Grotesk plus tard,
+     il suffira d’exposer une variable dans layout: --font-cabinet */
+  --font-body: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-display: var(--font-cabinet, var(--font-inter)), system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
-.animate-marquee {
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family: var(--font-body);
+}
+
+/* =========================================================
+   Layout helpers
+   ========================================================= */
+.container{ @apply max-w-6xl mx-auto px-4; }
+
+/* Un poil plus de respiration desktop = plus premium */
+.section{ @apply py-16 md:py-24; }
+
+/* Alternance plus subtile : moins “bloc gris” */
+.section-alt{ background: var(--soft-2); }
+
+/* Liens */
+a{ @apply underline-offset-4 hover:underline; }
+small.muted{ @apply text-white/60; }
+
+/* =========================================================
+   Typographie (hiérarchie premium)
+   ========================================================= */
+h1,h2,h3{ font-family: var(--font-display); @apply font-extrabold tracking-tight; }
+
+h1{ @apply text-4xl md:text-6xl leading-[1.06]; }
+
+/* H2 = anchors de section (fort mais pas “hero partout”) */
+h2{
+  @apply text-2xl md:text-4xl leading-tight;
+  margin-top: 0; /* on évite le mt-8 global qui crée des décalages partout */
+}
+
+/* H3 = sous-titres */
+h3{ @apply text-xl md:text-2xl leading-snug; }
+
+/* Corps : lisible, premium, pas trop gros */
+p{
+  @apply leading-7;
+  color: var(--muted);
+}
+
+/* Petit détail premium : paragraphes confortables en lecture */
+.prose-max{ max-width: 65ch; }
+
+/* =========================================================
+   Components styles (global)
+   ========================================================= */
+
+/* Bouton principal Sidetick */
+.btn{
+  @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold transition;
+  background: theme('colors.sidetick.orange');
+  color: #000;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+.btn:active{ transform:translateY(0); }
+
+/* Card (glass) : plus fin, moins “cheap” */
+.card{
+  @apply rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-lg p-6;
+}
+
+/* Hero gradient Sidetick */
+.hero-gradient{
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(122,60,255,.28), transparent 60%),
+    radial-gradient(900px 500px at 10% 20%, rgba(255,0,153,.18), transparent 60%);
+}
+
+/* =========================================================
+   SocialProof marquee
+   ========================================================= */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee{
   animation: marquee var(--marquee-duration, 30s) linear infinite;
   will-change: transform;
 }
-
-/* Masque pour fondre les bords gauche/droite proprement */
-.marquee-mask {
+.marquee-mask{
   -webkit-mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
           mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
 }
 
-/* globals.css : motion system */
-@media (prefers-reduced-motion:no-preference){
-  .reveal-up{opacity:0;transform:translateY(12px);animation:reveal .6s ease-out both}
-  .reveal-fade{opacity:0;animation:fade .6s ease-out both}
-  @keyframes reveal{to{opacity:1;transform:none}}
-  @keyframes fade{to{opacity:1}}
-}
-/* boutons */
-.btn{transition:transform .2s ease, box-shadow .2s ease}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-
-/* --- Reveal on scroll --- */
-.reveal-up {
+/* =========================================================
+   Reveal on scroll (une seule version, clean)
+   ========================================================= */
+.reveal-up{
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -54,16 +119,28 @@ body { font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Robot
     transform 600ms cubic-bezier(.2,.65,.2,1);
   will-change: opacity, transform;
 }
-.reveal-up.is-visible {
+.reveal-up.is-visible{
   opacity: 1;
   transform: translateY(0);
 }
-@keyframes sidetick-shimmer {
+
+@media (prefers-reduced-motion: reduce){
+  .reveal-up{ opacity:1; transform:none; transition:none; }
+  .animate-marquee{ animation:none; }
+}
+
+/* Shimmer */
+@keyframes sidetick-shimmer{
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
-.sidetick-shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 100%);
+.sidetick-shimmer{
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.35) 50%,
+    rgba(255,255,255,0) 100%
+  );
   background-size: 200% 100%;
   animation: sidetick-shimmer 1.2s infinite;
 }
